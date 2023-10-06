@@ -1,0 +1,18 @@
+// simple one shots.
+// custom-key, Oneshot name.
+  ONESHOT( SOS_LSFT, ONESHOT_LSFT)
+  ONESHOT( SOS_LCTL, ONESHOT_LCTL)
+  ONESHOT( SOS_LALT, ONESHOT_LALT)
+  ONESHOT( SOS_LGUI, ONESHOT_LGUI)
+
+// keys to cancel
+  CANCEL_KEY( KC_ESC)
+
+//  CANCEL_KEY( KC_FNAV)
+//  CANCEL_KEY( KC_FNUM)
+//  CANCEL_KEY( KC_FCAPS)
+
+// keys to ignore.
+IGNORE_KEY( SPC_NAV)
+//  IGNORE_KEY( KC_FNAV)
+//  IGNORE_KEY( KC_FSYM)

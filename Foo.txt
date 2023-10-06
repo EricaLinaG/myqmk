@@ -1,0 +1,7 @@
+(let ((data '(("bc" "because") ("wo" "without") ("wi" "with") ("ex" "For example,") ("qm" "sacha@sachachua.com") ("qe" "http://sachachua.com/dotemacs") ("qw" "http://sachachua.com/") ("qb" "http://sachachua.com/blog/") ("qc" "http://sachachua.com/blog/emacs-chat/"))))
+(mapc (lambda (x) (define-global-abbrev (car x) (cadr x))) data)
+)
+
+(let ((data '("[-] do-it" "[X] they-it" "[-] something else.")))
+;; data
+)
