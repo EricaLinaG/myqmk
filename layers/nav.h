@@ -117,56 +117,105 @@
 #define ___10_NAVm_3___ ___NAV_L_3___, ___NAV_R_3___
 #endif
 
+#ifdef NAV_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(NAV, \
+                   "Nav", \
+                   "", \
+                   "Mouse left, Mouse buttons both sides, arrows etc. on right.")
+
 // A Navigation Layer
-#define CARTE_NAV                               \
-  carte_de_map("54321 0  ctn 12345",            \
+carte_de_MAP("54321 0  ctn 12345",            \
                " ldur 1  ccv ldur",             \
                " ldur 2   .  tdubt")
 
 #define ___NAV_3x10___ ___10_NAV_1___, ___10_NAV_2___, ___10_NAV_3___
 #define ___NAV_3x12___ ___12_NAV_1___, ___12_NAV_2___, ___12_NAV_3___
 
-#define CARTE_NAVA                              \
-  carte_de_map(" gacs 0  ctn 12345",             \
+#endif
+
+#ifdef NAV_MODS_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(NAV_MOD, \
+                   "Nav Mods", \
+                   "", \
+                   "Lock mods on left, mouse buttons on right.")
+
+
+carte_de_MAP(" gacs 0  ctn 12345",             \
                " ldur 1  ccv ldur",              \
                " ldur 2   .  tdubt")
 
-#define ___NAVA_3x10___ ___10_NAV_1a___, ___10_NAV_2___, ___10_NAV_3___
+LAYER_MAP( ___10_NAV_1a___, ___10_NAV_2___, ___10_NAV_3___)
 
-#define CARTE_NAVnm                             \
-  carte_de_map(" gacsc2 ctn cscag ",            \
+#ifdef NAV_NM_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(NAV_NM, \
+                   "Nav nm", \
+                   "", \
+                   "No Mouse, mods on left/right, HDUE.")
+
+carte_de_MAP(" gacsc2 ctn cscag ",            \
                " gacs   ccv ldur",              \
                " __M_   cwq HDUE")
 
-#define ___NAVnm_3x10___ ___10_NAVnm_1___, ___10_NAVnm_2___, ___10_NAVnm_3___
+LAYER_MAP( ___10_NAVnm_1___, ___10_NAVnm_2___, ___10_NAVnm_3___)
 
-#define CARTE_NAVm                                 \
-  carte_de_map(" gacs 0  ctn 12345",               \
+#ifdef NAV_M_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(NAV_M, \
+                   "Nav Mouse", \
+                   "", \
+                   "Mouse, lock mods on left, HDUE.")
+
+carte_de_MAP(" gacs 0  ctn 12345",               \
                " ldur 1  ccv ldur",                \
                " ldur 2  cwq HDUE")
 
 #ifdef MOUSEKEY_ENABLE
-#define ___NAVm_3x10___ ___10_NAVm_1___, ___10_NAVm_2___, ___10_NAVm_3___
+LAYER_MAP( ___10_NAVm_1___, ___10_NAVm_2___, ___10_NAVm_3___)
 #endif
 
-#define CARTE_NAV_miryoku                       \
-  carte_de_map("  rdo  ccp undo",               \
+#ifdef NAV_MIRYOKU_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(NAV_MIRYOKU, \
+                   "Nav Miryoku", \
+                   "", \
+                   "Miryoku Nav layer, no mouse.")
+
+carte_de_MAP("  rdo  ccp undo",               \
                "  Caps ldur",                   \
                "  Ins  HDUE")
 
-#define ___NAV_miryoku___ \
+LAYER_MAP( \
   ___5___, ___redo_cut_copy_paste_undo___,                              \
     ___5___, KC_CAPS, ___VI_ARROWS___,                                  \
-    ___5___, KC_INSERT, ___HOME_
+    ___5___, KC_INSERT, ___HOME___)
 
-#define CARTE_NAVm_miryoku                      \
-  carte_de_map("  rdo ccp undo",               \
+#endif
+
+#ifdef NAV_M_MIRYOKU_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(NAV_M_MIRYOKU, \
+                   "Nav M Miryoku", \
+                   "", \
+                   "Miryoku Nav layer, with mouse.")
+
+carte_de_MAP("  rdo ccp undo",               \
                "      ldur",                   \
                "      ldur")
 
 #ifdef MOUSEKEY_ENABLE
-#define ___NAVm_miryoku___                                              \
+LAYER_MAP(                                              \
   ___5___, ___redo_cut_copy_paste_undo___,                              \
     ___5___, ___, ___MOUSE_LDUR___,                                     \
-    ___5___, ___, ___MWHEEL_LDUR___,
+    ___5___, ___, ___MWHEEL_LDUR___)
+#endif
+
 #endif

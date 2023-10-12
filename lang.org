@@ -728,7 +728,7 @@ my case en, us, or bp.  and make up your own 2 or 3 letter piece of name *_foo* 
 So that is how to determine the name of the keycode you want to create.  This is the worst pain point
 for making a layout work on any language. Not so bad.
 
-These keys are easiest to define in /defs/altlocal_keys.def/ , The most important thing is to know how the name is constructed so that the can be properly defined.
+These keys are easiest to define in /defs/altlocal_keys.def/ , The most important thing is to know how the name is constructed so that they can be properly defined.
 
 
 ** Custom keycodes, edge keys and thumbs.

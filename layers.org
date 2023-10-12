@@ -13,7 +13,7 @@ use emacs or org. Poor them.
 #+begin_src C :tangle layers/layers.h
 #pragma once
 /*
-  Copyright 2018 Eric Gebhart <e.a.gebhart@gmail.com>
+  Copyright 2018-2023 EricaLina, Eric Gebhart <e.a.gebhart@gmail.com>
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -35,8 +35,18 @@ use emacs or org. Poor them.
 #+begin_src C :tangle layers/layers.h
 #define CHUNK_LANG_MAP(...) LANG_MAP(__VA_ARGS__)
 #define CHUNK_LANG_ROW(...) LANG_ROW(__VA_ARGS__)
+// Layer name, definition, text name, text map.
+#define BLANK(...)
+LAYER_NAME(...) BLANK(__VA_ARGS__)
+//#define _LAYER_NAME(layer, definition, text_name, map, url, note) \
+//       _%%layer, text_name, note
+// for base_names.h, etc.
+//#define _LAYER_NAME(layer, definition, text_name, map, url, note) \
+//       LANG_N(_%%layer),
 
-// moved smart/one-shot mod row to perimeter/toprows.
+/* B_LAYER(LANG_N(_MTGAP), ___10_NUMBERS___, ___MTGAP___), */
+/* B_LAYERt6(LANG_N(_BEPO), ___12_SYMBOLS_BEPO___, ___BEPO_3x12___), */
+/* T_LAYER(_NAVm, ___NAVm_3x10___), */
 
 #include "accents.h"
 #include "toprows.h"
@@ -200,64 +210,84 @@ technology can do this. So that is coming up.
 
 *** Accented
 #+begin_src C :tangle layers/accents.h
+#ifdef ACCENTED_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(ACCENTED, "Accents", \
+                   "", \
+                   "Common western european accented characters.")
+
 // doesnt work, oled displays garbage
-/* #define CARTE_ACCENTED                          \ */
-/*   carte_de_map(" æœêùì  ¿ïüöë ",                \ */
+/* carte_de_MAP(" æœêùì  ¿ïüöë ",                \ */
 /*                " àôèéî  ûçñß^",                 \ */
 /*                " âöíúí       ") */
 
 // need to figure out a better way to display these on the oled.
-#define CARTE_ACCENTED                          \
-  carte_de_map(" aoeui  ?iuoe ",                \
+carte_de_MAP(" aoeui  ?iuoe ",                \
                " aoeei  ucnS^",                 \
                " aoiúi       ")
 
-#define ___ACCENTED___                                                  \
+cAYER_MAP( \
   LANG_MAP(_AE,   _OE,   _ECIR, _UGRV, _IGRV,   _IQUE, _IIAE, _UIAE, _OIAE, _EIAE, \
            _AGRV, _OCIR, _EGRV, _EACU, _ICIR,   _UCIR, _CCED, _NTIL, _SS,   _DCIR, \
-           _AACU, _ODIA, _IACU, _UACU, _IACU,   _SPC,  _SPC,  _SPC , _SPC,  _SPC)
+           _AACU, _ODIA, _IACU, _UACU, _IACU,   _SPC,  _SPC,  _SPC , _SPC,  _SPC))
+
+#endif
 #+end_src
 *** Morte - Dead keys
 #+begin_src C :tangle layers/accents.h
-// doesnt work, oled displays garbage
+#ifdef MORTE_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(MORTE, "Morte", \
+                   "", \
+                   "Common western european Dead keys.")
 
 // A dead key layer, optimized for Most common,
 // western european.
-#define CARTE_MORTE                             \
-  carte_de_map(" ˝˘̉   ̛ ˙° ",                    \
+carte_de_MAP(" ˝˘̉   ̛ ˙° ",                    \
                "/`^´  ¸¨~¤",                    \
                " ,ˇ.  ˛µ¯")
 
-#define ___MORTE___                                                     \
+LAYER_MAP( \
   LANG_MAP(_,     _DACU, _BREV, _HOKA, _,   _, _HORN, _DOTA, _RNGA, _,  \
            _DSLS, _DGRV, _DCIR, _ACUT, _,   _, _CEDL, _DIAE, _DTIL, _CURR, \
-           _,     _DCMM, _CARN, _DOTB, _,   _, _OGON, _DGRK, _MACR, _)
+           _,     _DCMM, _CARN, _DOTB, _,   _, _OGON, _DGRK, _MACR, _))
 
+#endif
 #+end_src
+
 *** Accents Morte
 
 Both accented keys and dead keys on one layer. The most common of
 each for western europe are on the home row.
 
 #+begin_src C :tangle layers/accents.h
+#ifdef ACCENTS_MORTE_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(ACCENTS_MORTE, \
+                   "Accents/Morte", \
+                   "", \
+                   "Common western european accent characters & dead keys.")
+
 // Just taking a guess and putting the things I know are most
 // used in easy to use places., not sure about ntil and ss, put
 // them in their dvorak spots on the home row.
 
-/* #define CARTE_ACCENTS_MORTE                     \ */
-/*   carte_de_map(" æœêùì  ¿`^´ë ",                \ */
+/* carte_de_MAP(" æœêùì  ¿`^´ë ",                \ */
 /*                " àôèéî  ¸çñß~",                 \ */
 /*                " âö,úí   ¨ˇ°   ") */
 
-#define CARTE_ACCENTS_MORTE                     \
-  carte_de_map(" aoeui  ?`^'e ",                \
+carte_de_MAP(" aoeui  ?`^'e ",                \
                " aoeei  ,cnS~",                 \
                " ao,ui   \"^o")
 
-#define ___ACCENTS_MORTE___                                             \
+LAYER_MAP( \
   LANG_MAP(_AE,   _OE,    _ECIR,  _UGRV,  _IGRV,    _IQUE, _DGRV, _DCIR, _ACUT, _EIAE, \
            _AGRV, _OCIR,  _EGRV,  _EACU,  _ICIR,    _CEDL, _CCED, _NTIL, _SS,   _DTIL, \
-           _AACU, _OIAE,  _DCMM,  _UACU,  _IACU,    _OGON, _DIAE, _CARN, _RNGA, _HORN)
+           _AACU, _OIAE,  _DCMM,  _UACU,  _IACU,    _OGON, _DIAE, _CARN, _RNGA, _HORN))
+#endif
 #+end_src
 
 These are the dead keys in Bépo
@@ -439,103 +469,152 @@ you limit it to 3 rows.
 **** Beakl Wi - Hex pad, keypad
 
 #+begin_src C :tangle layers/keypads.h
+#ifdef KP_BEAKL_WI_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(KP_BEAKL_WI, \
+                   "KP_Beakl WI", \
+                   "", \
+                   "")
+
 // beakl wi is a hexpad numpad.
 /* Beakle Wi, Hexpad and keypad - needs a zero somewhere.*/
-#define CARTE_KP_BKL_WI                         \
-  carte_de_map( "  ABC  /459* ",                \
+carte_de_MAP( "  ABC  /459* ",                \
                 "  DEF  .123- ",                \
                 "  {}|  ,867+ ")
 
-#define ___KP_BKL_WI_3x10___                                    \
+LAYER_MAP( \
   CHUNK_LANG_MAP(___KP_BKL_WI_L1___, ___KP_BKL_WI_R1___,        \
                  ___KP_BKL_WI_L2___, ___KP_BKL_WI_R2___,        \
-                 ___KP_BKL_WI_L3___, ___KP_BKL_WI_R3___)
+                 ___KP_BKL_WI_L3___, ___KP_BKL_WI_R3___))
 
-
+#endif
 #+end_src
 
 **** Beakl 15, 3 row keypad
 ***** Funcpad on right.
 
 #+begin_src C :tangle layers/keypads.h
+#ifdef KP_BEAKL_FUNC_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(KP_BEAKL_FUNC, \
+                   "Beakl Keypad", \
+                   "", \
+                   "")
+
 // BEAKL 15 and a f1-f12 funcpad
-#define CARTE_KP_BKL_FUNC                       \
-  carte_de_map("    523:  F9-12",               \
+carte_de_MAP("    523:  F9-12",               \
                "  -7.104  F5-8",                \
                "   /798,  F1-4")
 
-#define ___KP_BKL_FUNC_3x10___                                          \
+LAYER_MAP( \
   CHUNK_LANG_MAP(___KEYPAD_BEAKL_L2___, _TRNS, ___4_FUNCPAD_1___,       \
                  ___KEYPAD_BEAKL_L3___, _TRNS, ___4_FUNCPAD_2___,       \
-                 ___KEYPAD_BEAKL_L4___, _TRNS, ___4_FUNCPAD_3___)
+                 ___KEYPAD_BEAKL_L4___, _TRNS, ___4_FUNCPAD_3___))
 
+
+// 4 rows, BEAKL 15 and a f1-f12 funcpad
+LAYER_MAP( \
+  CHUNK_LANG_ROW(___KEYPAD_BEAKL_L1___, ___KEYPAD_BEAKL_R1___), \
+  CHUNK_LANG_MAP(___KP_BKL_FUNC___))
+
+#endif
 #+end_src
 
 ***** Mods on right.
 
 #+begin_src C :tangle layers/keypads.h
+#ifdef KP_BEAKL_MODS_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(KP_BEAKL_MODS, \
+                   "Beakl Keypad", \
+                   "", \
+                   "")
+
 // BEAKL 15 and mods.
-#define CARTE_KP_BKL_MODS                          \
-  carte_de_map("    523:  SL Mods",                \
+carte_de_MAP("    523:  SL Mods",                \
                "  -7.104  OS Mods",                \
                "   /798,   Enter")
 
 
-#define ___KP_BKL_MODS_3x10___                                          \
+LAYER_MAP( \
   CHUNK_LANG_MAP(___KEYPAD_BEAKL_L2___, _TRNS, ___SML_MODS_R___,        \
                  ___KEYPAD_BEAKL_L3___, ___OS_MODS_R___,                \
-                 ___KEYPAD_BEAKL_L4___, _TRNS, _ENT, _ENT, _ENT, _TRNS)
+                 ___KEYPAD_BEAKL_L4___, _TRNS, _ENT, _ENT, _ENT, _TRNS))
 
-// 4 rows, BEAKL 15 and a f1-f12 funcpad
-#define ___KP_BKL_FUNC_4x10___                                  \
-  CHUNK_LANG_ROW(___KEYPAD_BEAKL_L1___, ___KEYPAD_BEAKL_R1___), \
-    CHUNK_LANG_MAP(___KP_BKL_FUNC_3x10___)
+#endif
+
 
 #+end_src
 
 **** 4 row function pad, keypad.
 
 #+begin_src C :tangle layers/keypads.h
+#ifdef FP_KP4_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(FP_KP_5x4, \
+                   "Funcpad Keypad", \
+                   "", \
+                   "4 rows, funcpad on left.")
+
 // 4 rows, funcpad, regular keypad on right.
-#define ___FP_KP_4x10___                                        \
+LAYER_MAP( \
   CHUNK_LANG_ROW(___5x4_FUNCPAD_T___,  ___5KEYPAD_1___),        \
     CHUNK_LANG_MAP(___5x4_FUNCPAD_1___,  ___5KEYPAD_2___,       \
                    ___5x4_FUNCPAD_2___,  ___5KEYPAD_3___,       \
-                   ___5x4_FUNCPAD_3___,  ___5KEYPAD_4___)
+                   ___5x4_FUNCPAD_3___,  ___5KEYPAD_4___))
 
-#define CARTE_FP_KP                             \
-  carte_de_map("  F9-12   789+",                \
+carte_de_MAP("  F9-12   789+",                \
                "  F5-8   .456*",                \
                "  F1-4   0123-")
 
+#endif
 #+end_src
 
 **** Function pad, number pad.
 
 #+begin_src C :tangle layers/keypads.h
+#ifdef FP_KP_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(FP_KP, \
+                   "Funcpad Keypad", \
+                   "", \
+                   "Funcpad on left. Keypad on right")
+
 // funcpad, regular keypad on right.
-#define ___FP_KP_3x10___                                        \
+LAYER_MAP( \
   CHUNK_LANG_MAP(___4_FUNCPAD_1___, ___, ___5KEYPAD_1___,       \
                  ___4_FUNCPAD_2___, ___,  ___5KEYPAD_2___,      \
-                 ___4_FUNCPAD_3___, ___,  ___5KEYPAD_3___)
+                 ___4_FUNCPAD_3___, ___,  ___5KEYPAD_3___))
 
-#define CARTE_KP_FP                             \
-  carte_de_map("   789+  F9-12",                \
-               "  .456*  F5-8",                 \
-               "  0123-  F1-4")
+carte_de_MAP("  F9-12   789+",                \
+               "  F5-8   .456*",                \
+               "  F1-4   0123-")
+
+#endif
 #+end_src
 
 **** Keypad, Function pad.
 
 #+begin_src C :tangle layers/keypads.h
+#ifdef KP_FP_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(KP_FP, \
+                   "Funcpad Keypad", \
+                   "", \
+                   "Keypad on left, funcpad on right.")
 // regular keypad on left.
-#define ___KP_FP_3x10___                                        \
+LAYER_MAP( \
   CHUNK_LANG_MAP(___5KEYPAD_1___,  ___, ___4_FUNCPAD_1___,      \
                  ___5KEYPAD_2___,  ___, ___4_FUNCPAD_2___,      \
-                 ___5KEYPAD_3___,  ___, ___4_FUNCPAD_3___)
+                 ___5KEYPAD_3___,  ___, ___4_FUNCPAD_3___))
 
-#define CARTE_MODS_KP                           \
-  carte_de_map("  SMods   789+",                \
+carte_de_MAP("  SMods   789+",                \
                "  OSMods .456*",                \
                "  F1-4   0123-")
 
@@ -544,42 +623,65 @@ you limit it to 3 rows.
 **** Left Mods, Right Keypad
 
 #+begin_src C :tangle layers/keypads.h
+#ifdef MODS_KP_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(MODS_KP, \
+                   "Mods Keypad", \
+                   "", \
+                   "Mods on left keypad on right")
+
 // funcpad, regular keypad on right.
-#define ___MODS_KP_3x10___                                    \
+LAYER_MAP( \
   CHUNK_LANG_MAP(___SML_MODS_L___, ___, ___5KEYPAD_1___,        \
                  ___OS_MODS_L___,       ___5KEYPAD_2___,     \
-                 ___5___,               ___5KEYPAD_3___)
+                 ___5___,               ___5KEYPAD_3___))
 
-#define CARTE_KP_MODS                           \
-  carte_de_map("   789+  SMods",                \
-               "  .456*  OSMods",                 \
-               "  0123-  ")
+carte_de_MAP("   SMods  789+ ",                \
+               "  OSMods .456* ",                 \
+               "         0123-  ")
 
+#endif
 #+end_src
 
 **** Left keypad, Right Mods
 
 #+begin_src C :tangle layers/keypads.h
+#ifdef KP_MODS_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(KP_MODS, \
+                   "Mods Keypad", \
+                   "", \
+                   "Keypad on left, Mods on right")
+
 // regular keypad on left.
-#define ___KP_MODS_3x10___                                      \
+LAYER_MAP( \
   CHUNK_LANG_MAP(___5KEYPAD_1___,  ___, ___SML_MODS_R___,       \
                  ___5KEYPAD_2___,  ___OS_MODS_L___,        \
-                 ___5KEYPAD_3___,  ___, ___4___)
+                 ___5KEYPAD_3___,  ___, ___4___))
+#endif
 #+end_src
 
 **** Left Function keypad, Right Mods
 
 #+begin_src C :tangle layers/keypads.h
+#ifdef FP_MODS_LAYER_ENABLE
 
-#define CARTE_FUN                           \
-  carte_de_map("  F9-F12  SMods",                \
+// Layer name, definition, text name, text map.
+LAYER_NAME(FP_MODS, \
+                   "Func pad, Mods", \
+                   "", \
+                   "Keypad on left, Mods on right")
+
+carte_de_MAP("  F9-F12  SMods",                \
                "  F5-F8   OSMods",               \
                "  F1-F4   ")
 
-#define ___FUN_3x10___                                                  \
+LAYER_MAP( \
   CHUNK_LANG_MAP(___4_FUNCPAD_1___, ___,  ___, ___SML_MODS_R___,        \
                  ___4_FUNCPAD_2___, ___,  ___OS_MODS_R___,              \
-                 ___4_FUNCPAD_3___, ___,  ___5___)
+                 ___4_FUNCPAD_3___, ___,  ___5___))
 
 #+end_src
 
@@ -588,30 +690,47 @@ you limit it to 3 rows.
 **** Function key pad with smart lock mods and oneshots
 
 #+begin_src C :tangle layers/keypads.h
-#define CARTE_FUN_MIRYOKU                       \
-  carte_de_map("F12 F7-F9 prt  SMods",          \
+#ifdef FP_MIRYOKU_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(FP_MIRYOKU, \
+                   "Func pad, Mods", \
+                   "", \
+                   "Funcpad on left, Mods on right")
+
+carte_de_MAP("F12 F7-F9 prt  SMods",          \
                "F11 F4-F6 scr  OSMods",         \
                "F10 F1-F3 pse  ")
 
-#define ___FP_MIRYOKU_3x10___                           \
+LAYER_MAP( \
   ___FUNCPAD_miryoku_1___,  ___, ___SML_MODS_R___,     \
     ___FUNCPAD_miryoku_2___,  ___OS_MODS_R___,         \
-    ___FUNCPAD_miryoku_3___,  ___5___
+    ___FUNCPAD_miryoku_3___,  ___5___))
+
+#endif
 #+end_src
 
 **** A lefthand keypad.
 
 #+begin_src C :tangle layers/keypads.h
+#ifdef KP_MIRYOKU_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(KP_MIRYOKU, \
+                   "Miryoku Keypad", \
+                   "", \
+                   "Keypad on left. Wants . and 0 on left thumb.")
+
 // wants . and 0 on left thumb.
-#define CARTE_KP_MIRYOKU      \
-  carte_de_map(" [789]",      \
+carte_de_MAP(" [789]",      \
                " ;456=",      \
                " `123\\")
 
-#define ___KP_MIRYOKU_3x10___                                     \
+LAYER_MAP( \
   CHUNK_LANG_MAP(___KEYPAD_miryoku_1___,                          \
                  ___KEYPAD_miryoku_2___,                             \
-                 ___KEYPAD_miryoku_3___)
+                 ___KEYPAD_miryoku_3___))
+#endif
 #+end_src
 
 
@@ -814,79 +933,129 @@ Bottom row below arrows is tab, page down, page up, back tab.
 Home and end are on combos specific to the layer.
 
 #+begin_src C :tangle layers/nav.h
+#ifdef NAV_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(NAV, \
+                   "Nav", \
+                   "", \
+                   "Mouse left, Mouse buttons both sides, arrows etc. on right.")
+
 // A Navigation Layer
-#define CARTE_NAV                               \
-  carte_de_map("54321 0  ctn 12345",            \
+carte_de_MAP("54321 0  ctn 12345",            \
                " ldur 1  ccv ldur",             \
                " ldur 2   .  tdubt")
 
 #define ___NAV_3x10___ ___10_NAV_1___, ___10_NAV_2___, ___10_NAV_3___
 #define ___NAV_3x12___ ___12_NAV_1___, ___12_NAV_2___, ___12_NAV_3___
+
+#endif
 #+end_src
 **** Mouse, Mods on left,
 
 Smart lock mods, on left upper row.
 
 #+begin_src C :tangle layers/nav.h
+#ifdef NAV_MODS_LAYER_ENABLE
 
-#define CARTE_NAVA                              \
-  carte_de_map(" gacs 0  ctn 12345",             \
+// Layer name, definition, text name, text map.
+LAYER_NAME(NAV_MOD, \
+                   "Nav Mods", \
+                   "", \
+                   "Lock mods on left, mouse buttons on right.")
+
+
+carte_de_MAP(" gacs 0  ctn 12345",             \
                " ldur 1  ccv ldur",              \
                " ldur 2   .  tdubt")
 
-#define ___NAVA_3x10___ ___10_NAV_1a___, ___10_NAV_2___, ___10_NAV_3___
+LAYER_MAP( ___10_NAV_1a___, ___10_NAV_2___, ___10_NAV_3___)
 #+end_src
+
 **** No Mouse, HDUE
 
 Home down up end instead of tab, page down, page up, backtab
 
 #+begin_src C :tangle layers/nav.h
+#ifdef NAV_NM_LAYER_ENABLE
 
-#define CARTE_NAVnm                             \
-  carte_de_map(" gacsc2 ctn cscag ",            \
+// Layer name, definition, text name, text map.
+LAYER_NAME(NAV_NM, \
+                   "Nav nm", \
+                   "", \
+                   "No Mouse, mods on left/right, HDUE.")
+
+carte_de_MAP(" gacsc2 ctn cscag ",            \
                " gacs   ccv ldur",              \
                " __M_   cwq HDUE")
 
-#define ___NAVnm_3x10___ ___10_NAVnm_1___, ___10_NAVnm_2___, ___10_NAVnm_3___
+LAYER_MAP( ___10_NAVnm_1___, ___10_NAVnm_2___, ___10_NAVnm_3___)
 #+end_src
 **** Mouse, HDUE
 
 Home down up end instead of tab, page down, page up, backtab
 
 #+begin_src C :tangle layers/nav.h
-#define CARTE_NAVm                                 \
-  carte_de_map(" gacs 0  ctn 12345",               \
+#ifdef NAV_M_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(NAV_M, \
+                   "Nav Mouse", \
+                   "", \
+                   "Mouse, lock mods on left, HDUE.")
+
+carte_de_MAP(" gacs 0  ctn 12345",               \
                " ldur 1  ccv ldur",                \
                " ldur 2  cwq HDUE")
 
 #ifdef MOUSEKEY_ENABLE
-#define ___NAVm_3x10___ ___10_NAVm_1___, ___10_NAVm_2___, ___10_NAVm_3___
+LAYER_MAP( ___10_NAVm_1___, ___10_NAVm_2___, ___10_NAVm_3___)
 #endif
 #+end_src
+
 **** Miryoku sans mouse
 #+begin_src C :tangle layers/nav.h
-#define CARTE_NAV_miryoku                       \
-  carte_de_map("  rdo  ccp undo",               \
+#ifdef NAV_MIRYOKU_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(NAV_MIRYOKU, \
+                   "Nav Miryoku", \
+                   "", \
+                   "Miryoku Nav layer, no mouse.")
+
+carte_de_MAP("  rdo  ccp undo",               \
                "  Caps ldur",                   \
                "  Ins  HDUE")
 
-#define ___NAV_miryoku___ \
+LAYER_MAP( \
   ___5___, ___redo_cut_copy_paste_undo___,                              \
     ___5___, KC_CAPS, ___VI_ARROWS___,                                  \
-    ___5___, KC_INSERT, ___HOME_
+    ___5___, KC_INSERT, ___HOME___)
+
+#endif
 #+end_src
+
 **** Miryoku with mouse
 #+begin_src C :tangle layers/nav.h
-#define CARTE_NAVm_miryoku                      \
-  carte_de_map("  rdo ccp undo",               \
+#ifdef NAV_M_MIRYOKU_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(NAV_M_MIRYOKU, \
+                   "Nav M Miryoku", \
+                   "", \
+                   "Miryoku Nav layer, with mouse.")
+
+carte_de_MAP("  rdo ccp undo",               \
                "      ldur",                   \
                "      ldur")
 
 #ifdef MOUSEKEY_ENABLE
-#define ___NAVm_miryoku___                                              \
+LAYER_MAP(                                              \
   ___5___, ___redo_cut_copy_paste_undo___,                              \
     ___5___, ___, ___MOUSE_LDUR___,                                     \
-    ___5___, ___, ___MWHEEL_LDUR___,
+    ___5___, ___, ___MWHEEL_LDUR___)
+#endif
+
 #endif
 
 #+end_src
@@ -982,16 +1151,25 @@ This didn't last long for me using Dvorak with it. It was missing too many keys.
 #+begin_src C :tangle layers/symbols.h
 // ---------------------------
 // ---------------------------
-#define CARTE_SYMB_BEAKL                        \
-  carte_de_map("  <$>   [_]   ",                \
+
+#ifdef SYMB_BEAKL_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(SYMB_BEAKL, \
+                   "Symb Beakl", \
+                   "", \
+                   "Original Beakl 15 Symbol layer, has tap hold on delimiters.")
+
+carte_de_MAP("  <$>   [_]   ",                \
                "-\\(\")# %{=}|;",               \
                "  :*+   &^~   ")
 
-#define ___SYMB_BEAKL_3x10___                                           \
+LAYER_MAP(                                           \
   CHUNK_LANG_MAP(_TRNS,   ___SB_L1___, _TRNS,    _TRNS,  ___SB_R1___, _TRNS, \
                  ___SB_L2___,                    ___SB_R2___,           \
-                 _TRNS,   ___SB_L3___, _TRNS,    _TRNS, ___SB_R3___, _TRNS)
+                 _TRNS,   ___SB_L3___, _TRNS,    _TRNS, ___SB_R3___, _TRNS))
 
+#endif
 #+end_src
 
 *** Beakl A - Extended for full coverage
@@ -1003,17 +1181,26 @@ This didn't last long for me using Dvorak with it. It was missing too many keys.
         =@:*+; !&^~/=
 
 #+begin_src C :tangle layers/symbols.h
+#ifdef SYMB_BEAKL_EXT_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(SYMB_BEAKL_EXT_, \
+                   "Symb Beakl extended", \
+                   "", \
+                   "Beakl Symbol layer, extended for other base layers")
+
 // ---------------------------
 // A: Extended.
-#define CARTE_SYMB_BEAKLA                       \
-  carte_de_map("   `<$>'  ?[_]-",               \
+carte_de_MAP("   `<$>'  ?[_]-",               \
                "  -\\(\")#  %{:}|;",            \
                "   @=*+;  !&^~/")
 
-#define ___SYMB_BEAKLA_3x10___                                          \
+LAYER_MAP(                                          \
   CHUNK_LANG_MAP(_OCGRV, ___SB_L1___, _OCQUOT,   _QUES,  ___SB_R1___, _MINS, \
                  ___SB_L2___,                    ___SB_R2a___,          \
-                 _AT,    ___SB_L3___, _SCLN,     _EXLM, ___SB_R3___, _SLSH)
+                 _AT,    ___SB_L3___, _SCLN,     _EXLM, ___SB_R3___, _SLSH))
+
+#endif
 
 #+end_src
 
@@ -1024,17 +1211,26 @@ This didn't last long for me using Dvorak with it. It was missing too many keys.
         =@=*+; %&^~|=
 
 #+begin_src C :tangle layers/symbols.h
+#ifdef SYMB_BEAKL_EXT_VI_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(SYMB_BEAKL_EXT_VI, \
+                   "Symb Beakl ext-vi", \
+                   "", \
+                   "Beakl Symbol layer, extended and optimised for vi.")
+
 // ---------------------------
 // B: Extended & Vi
-#define CARTE_SYMB_BEAKLB                       \
-  carte_de_map("   `<$>'  ?[_]-",               \
+carte_de_MAP("   `<$>'  ?[_]-",               \
                "  -\\(\")#  !{:}/;",            \
                "   @=*+;  %&^~|")
 
-#define ___SYMB_BEAKLB_3x10___                                          \
+LAYER_MAP(                                          \
   CHUNK_LANG_MAP(_OCGRV, ___SB_L1___,  _OCQUOT,   _QUES,  ___SB_R1___, _MINS, \
                  ___SB_L2___,                     ___SB_R2b___,         \
-                 _AT,    ___SB_L3b___, _SCLN,     _PERC, ___SB_R3___, _PIPE)
+                 _AT,    ___SB_L3b___, _SCLN,     _PERC, ___SB_R3___, _PIPE))
+
+#endif
 
 #+end_src
 
@@ -1047,20 +1243,28 @@ Very comfy with vi.
          =@=*+;  %&^~|=
 
 #+begin_src C :tangle layers/symbols.h
+#ifdef SYMB_BEAKL_EXT_VI_OPT_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(SYMB_BEAKL_EXT_VI_OPT_, \
+                   "Symb Beakl ext-vi-opt", \
+                   "", \
+                   "Beakl Symbol layer, extended, vi/emacs optimized.")
+
 // ---------------------------
 // C: Extended & Vi, move closing braces to pinky, seldom used.
 // because of tap hold - open_openclose feature.
 // Also emacs which mostly closes them.
-#define CARTE_SYMB_BEAKLC                       \
-  carte_de_map("   `<$>'  ?[_-]",               \
+carte_de_MAP("   `<$>'  ?[_-]",               \
                "  -\\(\"#)  !{:/};",            \
                "   @=*+;  %&^~|")
 
-#define ___SYMB_BEAKLC_3x10___                                          \
+LAYER_MAP(                                          \
   CHUNK_LANG_MAP(_OCGRV, ___SB_L1___,  _OCQUOT,   _QUES,  ___SB_R1c___, _RBRC, \
                  ___SB_L2c___,                     ___SB_R2c___,        \
-                 _AT,    ___SB_L3b___, _SCLN,     _PERC, ___SB_R3___, _PIPE)
+                 _AT,    ___SB_L3b___, _SCLN,     _PERC, ___SB_R3___, _PIPE))
 
+#endif
 #+end_src
 
 *** Symbol D - ?
@@ -1081,6 +1285,14 @@ They work, but not great.
      ==*+;  @&^~=
 
 #+begin_src C :tangle layers/symbols.h
+#ifdef SYMB_BEAKL_EXT_VI_OPT_RED_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(SYMB_BEAKL_EXT_VI_OPT_RED_, \
+                   "Symb Beakl ext-vi-opt-red", \
+                   "", \
+                   "Beakl Symbol layer, extended, vi/emacs, )}] on combos")
+
 // Next evolution.
 // Use combos to get closing )]} instead of on the map.
 // only need closes to 'fix something' that got out of wack somehow.
@@ -1091,37 +1303,55 @@ They work, but not great.
 // and ' gets to be in the center, while $ gets a corner. pinkies are almost free.
 // maybe ?_! can switch around some.  Room to mess around with the corners.
 
-#define CARTE_SYMB_D                            \
-  carte_de_map("   `<'>$  [?_! ",               \
+// Symbol extended vi/emacs optimised reduced.
+carte_de_MAP("   `<'>$  [?_! ",               \
                "   \\(\"#%  {-:/|",             \
                "    =*+;  @&^~ ")
 
-#define ___SYMB_D_3x10___                                   \
+LAYER_MAP(                                   \
   CHUNK_LANG_MAP(_OCGRV, ___SB_L1d___,  _DLR,   ___SB_R1d___, _NO,   \
                  ___SB_L2d___,                  ___SB_R2d___,           \
-                 _NO,    ___SB_L3b___, _SCLN,     _AT, ___SB_R3___, _NO)
+                 _NO,    ___SB_L3b___, _SCLN,     _AT, ___SB_R3___, _NO))
+
+#endif
 
 #+end_src
 
 *** Miryoku
 
 #+begin_src C :tangle layers/symbols.h
+#ifdef SYMB_MIRYOKU_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(SYMB_MIRYOKU,\
+                   "Symb Miryoku", \
+                   "", \
+                   "Miryoku symbol layer")
+
 // wants ( and ) on the left thumb.
-#define CARTE_SYMB_MIRYOKU                                  \
-  carte_de_map("  {&.(} ",                                  \
+carte_de_MAP("  {&.(} ",                                  \
                "  :$%^+ ",                                  \
                "  ~!@#| ")
 
-#define ___SYMB_MIRYOKU_3x10___                         \
+LAYER_MAP(                         \
   CHUNK_LANG_MAP(_OCCBR,   _AMPR, _DOT,  _OCPRN,   _RCBR, ____5_,     \
                  _COLN,    _DLR,  _PERC, _CIRC_ND, _PLUS, ____5_,     \
-                 _TILD_ND, _EXLM, _AT,   _HASH,    _PIPE, ____5_)
+                 _TILD_ND, _EXLM, _AT,   _HASH,    _PIPE, ____5_))
 
+#endif
 #+end_src
 
 *** Beakl Wi
 
 #+begin_src C :tangle layers/symbols.h
+#ifdef SYMB_BEAKL_WI_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(SYMB_BEAKL_WI, \
+                   "Symb Beakl WI", \
+                   "", \
+                   "Beakl WI symbol layer")
+
 // ---------------------------
 // WI: the Beakl Wi definition.
 #define ___SYMB_BKL_WI_L1___ ___,   _DOT,  _ASTR, _AMPR, _PLUS
@@ -1132,21 +1362,30 @@ They work, but not great.
 #define ___SYMB_BKL_WI_R2___ _QUES, _OCPRN, _DLR ,    _RPRN, ___
 #define ___SYMB_BKL_WI_R3___ _PIPE, _OCCBR, _HASH,    _RCBR, ___
 
-#define CARTE_SYMB_BEAKLWI                      \
-  carte_de_map(" .*&+  *[^] ",                  \
+carte_de_MAP(" .*&+  *[^] ",                  \
                " ?!/|  ?($) ",                  \
                " <>%@  |{#} ")
 
-#define ___SYMB_BEAKL_WI_3x10___                                \
+LAYER_MAP(                                \
   CHUNK_LANG_MAP(___SYMB_BKL_WI_L1___, ___SYMB_BKL_WI_R1___,    \
                  ___SYMB_BKL_WI_L2___, ___SYMB_BKL_WI_R2___,    \
-                 ___SYMB_BKL_WI_L3___, ___SYMB_BKL_WI_R3___)
+                 ___SYMB_BKL_WI_L3___, ___SYMB_BKL_WI_R3___))
 
+#endif
 #+end_src
+
 
 *** Neo
 
 #+begin_src C :tangle layers/symbols.h
+#ifdef SYMB_NEO_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(SYMB_NEO, \
+                   "Symb Neo", \
+                   "", \
+                   "Neo symbol layer")
+
 // ---------------------------
 // Neo symbol layer
 #define ___SYMB_NEO_L1___ ___,  _OCDQUOT, _UNDS,  _OCLBRC, _RBRC, _CIRC_ND
@@ -1157,15 +1396,16 @@ They work, but not great.
 #define ___SYMB_NEO_R2___ _QUES, _OCPRN, _RPRN , _QUOT, _COLN
 #define ___SYMB_NEO_R3___ _PLUS, _PERC,  _BSLS,  _AT,   ___
 
-#define CARTE_SYMB_NEO                          \
-  carte_de_map("\"_[]^  !<>=&",                 \
+carte_de_MAP("\"_[]^  !<>=&",                 \
                "/-{}*  ?()':",                  \
                "#$|~`  +%\@")
 
-#define ___SYMB_NEO_3x10___                                     \
+LAYER_MAP(                                     \
   CHUNK_LANG_MAP(___SYMB_NEO_L1___, ___SYMB_NEO_R1___,          \
                  ___SYMB_NEO_L2___, ___SYMB_NEO_R2___,          \
-                 ___SYMB_NEO_L3___, ___SYMB_NEO_R3___)
+                 ___SYMB_NEO_L3___, ___SYMB_NEO_R3___))
+
+#endif
 #+end_src
 
 ** Top-Rows
@@ -1175,15 +1415,24 @@ These are easy to remember and use if you are new to a 42 or less.
 *** Raise - The default, Standard Qwerty with F-keys
 
 #+begin_src C :tangle layers/toprows.h
-#define CARTE_RAISE                             \
-  carte_de_map("   !@#$%  ^&*()",               \
-               "   12345  67890",               \
-               " F1-    --    -F12")
+#ifdef RAISE_LAYER_ENABLE
 
-#define ___RAISE_3x10___                        \
+// Layer name, definition, text name, text map.
+LAYER_NAME(RAISE, \
+                   "Raise", \
+                   "", \
+                   "Raise: numbers, punctuation, Function keys.")
+
+carte_de_MAP("   !@#$%  ^&*()",               \
+               "   12345  67890",               \
+               "   F1-  -- -F10")
+
+LAYER_MAP(                        \
   ___10_SYMBOLS___,                             \
     ___10_NUMBERS___,                           \
-    ___10_FUNCS___
+    ___10_FUNCS___)
+
+#endif
 #+end_src
 *** Beakl 15
 
@@ -1193,32 +1442,50 @@ row.  This has been my current default for quite a while now.
 **** F-Keys
 
 #+begin_src C :tangle layers/toprows.h
+#ifdef TOPROWS_BEAKL15_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(TOPROWS_BEAKL15, \
+                   "Toprows Beakl 15", \
+                   "", \
+                   "Beakl numbers, punctuation, Function keys.")
+
 // These rows have already been langed, at their creation.
 // altogether in a chunk.
-#define CARTE_TOPROWS_BKL15                     \
-  carte_de_map("   !@#$%  ^&*()",               \
+carte_de_MAP("   !@#$%  ^&*()",               \
                "   40123  76598",               \
-               " F1-    --    -F12")
+               "   F1-  -- -F10")
 
-#define ___TOPROWS_BKL15_3x10___               \
+LAYER_MAP(               \
   ___10_SYMBOLS___,                             \
     ___10_NUMBERS_BEAKL15___,                   \
-    ___10_FUNCS___
+    ___10_FUNCS___)
+
+#endif
 #+end_src
 
 **** Smart locks and one-shots
 
 #+begin_src C :tangle layers/toprows.h
 
-#define CARTE_TOPROWS_MOD                       \
-  carte_de_map("   !@#$%  ^&*()",               \
+#ifdef TOPROWS_BEAKL15_MOD_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(TOPROWS_BEAKL15_MOD, \
+                   "Toprows Beakl 15 Mods", \
+                   "", \
+                   "Beakl numbers, punctuation, SL and OS Mods.")
+
+carte_de_MAP("   !@#$%  ^&*()",               \
                "   40123  76598",               \
                "  SLMods  OSMods")
 
-#define ___TOPROWS_MOD_3x10___                  \
+LAYER_MAP(                  \
   ___10_SYMBOLS___,                             \
     ___10_NUMBERS_BEAKL15___,                   \
-    ___MODS_ROW___
+    ___MODS_ROW___)
+
+#endif
 #+end_src
 
 *** @JohnM
@@ -1226,26 +1493,46 @@ row.  This has been my current default for quite a while now.
 @JohnM's preferred number row.
 
 #+begin_src C :tangle layers/toprows.h
+#ifdef TOPROWS_JOHNM_MODS_LAYER_ENABLE
 
-#define CARTE_TOPROWS_JOHNM_MOD                 \
-  carte_de_map("   !@#$%  ^&*()",               \
+// Layer name, definition, text name, text map.
+LAYER_NAME(TOPROWS_JOHNM_MOD, \
+                   "Toprows John 15 Mods", \
+                   "", \
+                   "Johnm numbers, punctuation, SL and OS Mods.")
+
+
+carte_de_MAP("   !@#$%  ^&*()",               \
                "   84236  71059",               \
                "  SLMods  OSMods")
 
-#define ___TOPROWS_JOHNM_MOD_3x10___            \
+LAYER_MAP(            \
   ___10_SYMBOLS___,                             \
     ___10_NUMBERS_JOHNM___,                     \
-    ___MODS_ROW___
+    ___MODS_ROW___)
 
-#define CARTE_TOPROWS_JOHNM2_MOD                \
-  carte_de_map("   !@#$%  ^&*()",               \
+#endif
+
+
+#ifdef TOPROWS_JOHNM2_MODS_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(TOPROWS_JOHNM2_MOD, \
+                   "Toprows John 15 Mods", \
+                   "", \
+                   "Johnm numbers, punctuation, SL and OS Mods.")
+
+
+carte_de_MAP("   !@#$%  ^&*()",               \
                "   65238  91047",               \
                "  SLMods  OSMods")
 
-#define ___TOPROWS_JOHNM2_MOD_3x10___           \
+LAYER_MAP(           \
   ___10_SYMBOLS___,                             \
     ___10_NUMBERS_JOHNM2___,                    \
-    ___MODS_ROW___
+    ___MODS_ROW___)
+
+#endif
 
 #+end_src
 
@@ -1254,15 +1541,23 @@ row.  This has been my current default for quite a while now.
 Just another arrangement of numbers. I like them both Im used to beakl 15.
 
 #+begin_src C :tangle layers/toprows.h
-#define CARTE_TOPROWS_BKL19                     \
-  carte_de_map("   !@#$%  ^&*()",               \
-               "   32104  76598",               \
-               " F1-    --    -F12")
+#ifdef TOPROWS_BEAKL19_LAYER_ENABLE
 
-#define ___TOPROWS_BKL19_3x10___                \
+// Layer name, definition, text name, text map.
+LAYER_NAME(TOPROWS_BEAKL19, \
+                   "Toprows Beakl 19", T\
+                   "", \
+                   "Beakl 19 numbers, punctuation, Function keys.")
+
+carte_de_MAP("   !@#$%  ^&*()",               \
+               "   32104  76598",               \
+               "   F1-  -- -F10")
+
+LAYER_MAP(                \
   ___10_SYMBOLS___,                             \
     ___10_NUMBERS_BEAKL19___,                   \
-    ___10_FUNCS___
+    ___10_FUNCS___)
+#endif
 
 #+end_src
 
@@ -1284,17 +1579,27 @@ Layers, RGB, Media, etc.
 #define ___MUTE_PRV_PLAY_NXT_STOP___  KC_MUTE,  KC_MPRV, KC_MPLY, KC_MNXT, KC_MSTP
 #define ___MUTE_PLAY_STOP___  KC_MUTE,  KC_MPLY,  KC_MSTP
 
-#define CARTE_MEDIA                      \
-  carte_de_map(" ",                      \
+#ifdef MEDIA_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(MEDIA, \
+                   "MEDIA", \
+                   "", \
+                   "A Layer for Controlling media")
+
+carte_de_MAP(" ",                      \
                "  < vdn vup >",          \
                "  stp play mute")
 
 // miryoku, to be used with stop play mute on thumbs. - MEDIA thumbs.
-#define ___MEDIA_3x10___                        \
+LAYER_MAP(                        \
   ___5___, ___5___,                             \
     ___5___, ___, ___PRV_VDN_VUP_NXT___,        \
-    ___5___, ___5___
+    ___5___, ___5___)
+
+#endif
 #+end_src
+
 
 *** RGB
 
@@ -1323,7 +1628,21 @@ Layers, RGB, Media, etc.
 /********************************************************************************/
 /* The RGB LAYER Chunk                                                          */
 /********************************************************************************/
-#define ___RGB_3x10___ ___10_RGB_1___, ___10_RGB_2___, ___10_RGB_3___
+#ifdef RGB_LAYER_ENABLE
+
+// Layer name, definition, text name, text map, url, note.
+LAYER_NAME(RGB, \
+                   "RGB", \
+                   "", \
+                   "A Layer for adjusting lights.")
+
+carte_de_MAP(" ",          \
+               " ",          \
+               " ")
+
+LAYER_MAP( ___10_RGB_1___, ___10_RGB_2___, ___10_RGB_3___)
+
+#endif
 
 
 #+end_src
@@ -1345,9 +1664,23 @@ Layers, RGB, Media, etc.
 /********************************************************************************/
 /* The Adjust LAYER Chunks                                                      */
 /********************************************************************************/
-#define ___ADJUST_3x10___  ___ADJUST_L1___, ___ADJUST_R1___,    \
+#ifdef ADJUST_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(ADJUST, \
+                   "Adjust", \
+                   "", \
+                   "A Layer for Adjusting things.")
+
+carte_de_MAP(" ",          \
+               " ",          \
+               " ")
+
+LAYER_MAP(  ___ADJUST_L1___, ___ADJUST_R1___,    \
     ___ADJUST_L2___, ___ADJUST_R2___,                           \
-    ___ADJUST_L3___, ___ADJUST_R3___
+    ___ADJUST_L3___, ___ADJUST_R3___)
+
+#endif
 
 
 #+end_src
@@ -1384,14 +1717,24 @@ Layers, RGB, Media, etc.
 #define ___5_LAYERS_T_CTL___ ___, MO_RGB, ___, ___, MO_ADJUST
 
 
-#define CARTE_LAYERS                            \
-  carte_de_map("          |Nv S K TR",          \
+#ifdef LAYERS_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(LAYERS, \
+                   "Layers", \
+                   "", \
+                   "A Layer for accessing layers.")
+
+
+carte_de_MAP("          |Nv S K TR",          \
                "  EE Bs Ln|Nv S K TR",          \
                " ")
 
 /// A Layers Layer
-#define ___LAYERS_3x10___                       \
-  ___5___,            ___5_LAYERS_T_BP___,      \
+LAYER_MAP(                       \
+    ___5___,            ___5_LAYERS_T_BP___,      \
     ___BASE_LAYERS___,  ___5_LAYERS_T___,       \
-    ___5___,            ___5_LAYERS_T_CTL___
+    ___5___,            ___5_LAYERS_T_CTL___)
+
+#endif
 #+end_src

@@ -15,55 +15,75 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifdef ACCENTED_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(ACCENTED, "Accents", \
+                   "", \
+                   "Common western european accented characters.")
+
 // doesnt work, oled displays garbage
-/* #define CARTE_ACCENTED                          \ */
-/*   carte_de_map(" æœêùì  ¿ïüöë ",                \ */
+/* carte_de_MAP(" æœêùì  ¿ïüöë ",                \ */
 /*                " àôèéî  ûçñß^",                 \ */
 /*                " âöíúí       ") */
 
 // need to figure out a better way to display these on the oled.
-#define CARTE_ACCENTED                          \
-  carte_de_map(" aoeui  ?iuoe ",                \
+carte_de_MAP(" aoeui  ?iuoe ",                \
                " aoeei  ucnS^",                 \
                " aoiúi       ")
 
-#define ___ACCENTED___                                                  \
+cAYER_MAP( \
   LANG_MAP(_AE,   _OE,   _ECIR, _UGRV, _IGRV,   _IQUE, _IIAE, _UIAE, _OIAE, _EIAE, \
            _AGRV, _OCIR, _EGRV, _EACU, _ICIR,   _UCIR, _CCED, _NTIL, _SS,   _DCIR, \
-           _AACU, _ODIA, _IACU, _UACU, _IACU,   _SPC,  _SPC,  _SPC , _SPC,  _SPC)
+           _AACU, _ODIA, _IACU, _UACU, _IACU,   _SPC,  _SPC,  _SPC , _SPC,  _SPC))
 
-// doesnt work, oled displays garbage
+#endif
+
+#ifdef MORTE_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(MORTE, "Morte", \
+                   "", \
+                   "Common western european Dead keys.")
 
 // A dead key layer, optimized for Most common,
 // western european.
-#define CARTE_MORTE                             \
-  carte_de_map(" ˝˘̉   ̛ ˙° ",                    \
+carte_de_MAP(" ˝˘̉   ̛ ˙° ",                    \
                "/`^´  ¸¨~¤",                    \
                " ,ˇ.  ˛µ¯")
 
-#define ___MORTE___                                                     \
+LAYER_MAP( \
   LANG_MAP(_,     _DACU, _BREV, _HOKA, _,   _, _HORN, _DOTA, _RNGA, _,  \
            _DSLS, _DGRV, _DCIR, _ACUT, _,   _, _CEDL, _DIAE, _DTIL, _CURR, \
-           _,     _DCMM, _CARN, _DOTB, _,   _, _OGON, _DGRK, _MACR, _)
+           _,     _DCMM, _CARN, _DOTB, _,   _, _OGON, _DGRK, _MACR, _))
+
+#endif
+
+#ifdef ACCENTS_MORTE_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(ACCENTS_MORTE, \
+                   "Accents/Morte", \
+                   "", \
+                   "Common western european accent characters & dead keys.")
 
 // Just taking a guess and putting the things I know are most
 // used in easy to use places., not sure about ntil and ss, put
 // them in their dvorak spots on the home row.
 
-/* #define CARTE_ACCENTS_MORTE                     \ */
-/*   carte_de_map(" æœêùì  ¿`^´ë ",                \ */
+/* carte_de_MAP(" æœêùì  ¿`^´ë ",                \ */
 /*                " àôèéî  ¸çñß~",                 \ */
 /*                " âö,úí   ¨ˇ°   ") */
 
-#define CARTE_ACCENTS_MORTE                     \
-  carte_de_map(" aoeui  ?`^'e ",                \
+carte_de_MAP(" aoeui  ?`^'e ",                \
                " aoeei  ,cnS~",                 \
                " ao,ui   \"^o")
 
-#define ___ACCENTS_MORTE___                                             \
+LAYER_MAP( \
   LANG_MAP(_AE,   _OE,    _ECIR,  _UGRV,  _IGRV,    _IQUE, _DGRV, _DCIR, _ACUT, _EIAE, \
            _AGRV, _OCIR,  _EGRV,  _EACU,  _ICIR,    _CEDL, _CCED, _NTIL, _SS,   _DTIL, \
-           _AACU, _OIAE,  _DCMM,  _UACU,  _IACU,    _OGON, _DIAE, _CARN, _RNGA, _HORN)
+           _AACU, _OIAE,  _DCMM,  _UACU,  _IACU,    _OGON, _DIAE, _CARN, _RNGA, _HORN))
+#endif
 
 /* // DEAD layer. */
 /* BP_DCIR // ^ (dead) */

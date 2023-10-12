@@ -1,6 +1,6 @@
 #pragma once
 /*
-  Copyright 2018-2022 Eric Gebhart <e.a.gebhart@gmail.com>
+  Copyright 2018-2023 EricaLina, Eric Gebhart <e.a.gebhart@gmail.com>
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -16,45 +16,77 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#define CARTE_DVORAK                            \
-  carte_de_map(" ',.py fgcrl ",                 \
-               " aoeui dhtns ",                 \
-               " ;qjkx bmwvz ")
+#ifdef _DVORAK_LAYER_ENABLE
 
-#define ___DVORAK___                                                    \
-  LANG_MAP(TL_QUOT,  TL_COMM, TL_DOT, _P,  _Y,   _F, _G, _C, _R, _L,    \
-           _A,       _O,      _E,     _U,  _I,   _D, _H, _T, _N, _S,    \
-           TL_SCLN,  _Q,      _J,     _K,  _X,   _B, _M, _W, _V, _Z)
+LAYER_NAME(DVORAK, "Dvorak", \
+                   "",
+                   "")
 
-#define CARTE_DVORAK_RLC_IU                     \
-  carte_de_map(" ',.py frglc ",                 \
-               " aoeiu dhtns ",                 \
-               " ;qjkx bmwvz ")
+carte_de_MAP(" ',.py fgcrl ",                 \
+             " aoeui dhtns ",                 \
+             " ;qjkx bmwvz ")
 
-#define ___DVORAK_RLC_IU___                                             \
-  LANG_MAP(TL_QUOT,  TL_COMM, TL_DOT, _P,  _Y,   _F, _R, _G, _L, _C,    \
-           _A,       _O,      _E,     _I,  _U,   _D, _H, _T, _N, _S,    \
-           TL_SCLN,  _Q,      _J,     _K,  _X,   _B, _M, _W, _V, _Z)
+LAYER_MAP(
+  LANG_MAP(_QUOT,  _COMM, _DOT, _P,  _Y,   _F, _G, _C, _R, _L,    \
+           _A,     _O,    _E,   _U,  _I,   _D, _H, _T, _N, _S,    \
+           _SCLN,  _Q,    _J,   _K,  _X,   _B, _M, _W, _V, _Z))
+#endif
 
-#define CARTE_BOO                               \
-  carte_de_map("  ,.ucv  qfdly",                \
-               "  aoesg  bntri",                \
-               "  ;x'wz  phmkj")
+#ifdef _DVORAK_RLC_IU_LAYER_ENABLE
 
-#define ___BOO___                                                       \
-  LANG_MAP( TL_COMM, TL_DOT, _U,      _C, _V,   _Q, _F, _D, _L, _Y,     \
-            _A,      _O,     _E,      _S, _G,   _B, _N, _T, _R, _I,     \
-            TL_SCLN, _X,     TL_QUOT, _W, _Z,   _P, _H, _M, _K, _J)
+LAYER_NAME(DVORAK_RLC_IU, \
+                  "Dvorak RLC IU", \
+                   "", \
+                   "Swap RLC and UI")
 
-#define CARTE_CAPEWELL_DVORAK                   \
-  carte_de_map( "  ',.py  qfgrk",               \
-                "  oaeiu  dhtns",               \
-                "  zxcvj  lmwb;")
+carte_de_MAP(" ',.py frglc ",                 \
+             " aoeiu dhtns ",                 \
+             " ;qjkx bmwvz ")
 
-#define ___CAPEWELL_DVORAK___                                           \
-  LANG_MAP(TL_QUOT, TL_COMM, TL_DOT, _P, _Y,   _Q, _F, _G, _R, _K,      \
-           _O,      _A,      _E,     _I, _U,   _D, _H, _T, _N, _S,      \
-           _Z,      _X,      _C,     _V, _J,   _L, _M, _W, _B, TL_SCLN)
+LAYER_MAP(
+  LANG_MAP(_QUOT,  _COMM, _DOT, _P,  _Y,   _F, _R, _G, _L, _C,    \
+           _A,     _O,    _E,   _I,  _U,   _D, _H, _T, _N, _S,    \
+           _SCLN,  _Q,    _J,   _K,  _X,   _B, _M, _W, _V, _Z))
+
+#endif
+
+#ifdef _BOO_LAYER_ENABLE
+
+LAYER_NAME(BOO, "Boo", \
+                "", \
+                "")
+
+carte_de_MAP("  ,.ucv  qfdly",                \
+             "  aoesg  bntri",                \
+             "  ;x'wz  phmkj")
+
+LAYER_MAP(
+  LANG_MAP( _COMM, _DOT, _U,    _C, _V,   _Q, _F, _D, _L, _Y,     \
+            _A,    _O,   _E,    _S, _G,   _B, _N, _T, _R, _I,     \
+            _SCLN, _X,   _QUOT, _W, _Z,   _P, _H, _M, _K, _J))
+
+#endif
+
+#ifdef _CAPEWELL_DVORAK_LAYER_ENABLE
+
+LAYER_NAME(CAPEWELL_DVORAK, \
+                   "CAPEWELL_Dvorak", \
+                   "", \
+                   "")
+
+carte_de_MAP( "  ',.py  qfgrk",               \
+              "  oaeiu  dhtns",               \
+              "  zxcvj  lmwb;")
+
+LAYER_MAP(
+  LANG_MAP(_QUOT, _COMM, _DOT, _P, _Y,  _Q, _F, _G, _R, _K,      \
+           _O,    _A,    _E,   _I, _U,  _D, _H, _T, _N, _S,      \
+           _Z,    _X,    _C,   _V, _J,  _L, _M, _W, _B, _SCLN))
+
+
+#endif
+
+#ifdef _AHEI_LAYER_ENABLE
 
 //ahei - derived from dvorak.
 // x moved to left side. j on pinky.
@@ -62,12 +94,16 @@
 /* ahei, fstnr- */
 /* j'k.x bcwvz */
 
-#define CARTE_AHEI                              \
-  carte_de_map("pouyq  gdlm/",                  \
-               "ahei,  fstnr",                  \
-               "j'k.x  bcwvz")
+LAYER_NAME(AHEI, "AHEI", \
+                   "", \
+                   "")
 
-#define ___AHEI___                                                      \
-LANG_MAP(_P, _O,      _U, _Y,     _Q,       _G, _D, _L, _M, TL_SLSH, \
-         _A, _H,      _E, _I,     TL_COMM,  _F, _S, _T, _N, _R,      \
-         _J, TL_QUOT, _K, TL_DOT, _X,       _B, _C, _W, _V, _Z)
+carte_de_MAP("pouyq  gdlm/",                  \
+             "ahei,  fstnr",                  \
+             "j'k.x  bcwvz")
+
+LANG_MAP(_P, _O,    _U, _Y,   _Q,     _G, _D, _L, _M, _SLSH, \
+         _A, _H,    _E, _I,   _COMM,  _F, _S, _T, _N, _R,      \
+         _J, _QUOT, _K, _DOT, _X,     _B, _C, _W, _V, _Z))
+
+#endif

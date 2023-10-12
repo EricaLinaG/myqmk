@@ -28,64 +28,120 @@
 /* TOPROWS Layer chunk                                                          */
 /********************************************************************************/
 
-#define CARTE_RAISE                             \
-  carte_de_map("   !@#$%  ^&*()",               \
-               "   12345  67890",               \
-               " F1-    --    -F12")
+#ifdef RAISE_LAYER_ENABLE
 
-#define ___RAISE_3x10___                        \
+// Layer name, definition, text name, text map.
+LAYER_NAME(RAISE, \
+                   "Raise", \
+                   "", \
+                   "Raise: numbers, punctuation, Function keys.")
+
+carte_de_MAP("   !@#$%  ^&*()",               \
+               "   12345  67890",               \
+               "   F1-  -- -F10")
+
+LAYER_MAP(                        \
   ___10_SYMBOLS___,                             \
     ___10_NUMBERS___,                           \
-    ___10_FUNCS___
+    ___10_FUNCS___)
+
+#endif
+
+#ifdef TOPROWS_BEAKL15_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(TOPROWS_BEAKL15, \
+                   "Toprows Beakl 15", \
+                   "", \
+                   "Beakl numbers, punctuation, Function keys.")
 
 // These rows have already been langed, at their creation.
 // altogether in a chunk.
-#define CARTE_TOPROWS_BKL15                     \
-  carte_de_map("   !@#$%  ^&*()",               \
+carte_de_MAP("   !@#$%  ^&*()",               \
                "   40123  76598",               \
-               " F1-    --    -F12")
+               "   F1-  -- -F10")
 
-#define ___TOPROWS_BKL15_3x10___               \
+LAYER_MAP(               \
   ___10_SYMBOLS___,                             \
     ___10_NUMBERS_BEAKL15___,                   \
-    ___10_FUNCS___
+    ___10_FUNCS___)
 
-#define CARTE_TOPROWS_MOD                       \
-  carte_de_map("   !@#$%  ^&*()",               \
+#endif
+
+#ifdef TOPROWS_BEAKL15_MOD_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(TOPROWS_BEAKL15_MOD, \
+                   "Toprows Beakl 15 Mods", \
+                   "", \
+                   "Beakl numbers, punctuation, SL and OS Mods.")
+
+carte_de_MAP("   !@#$%  ^&*()",               \
                "   40123  76598",               \
                "  SLMods  OSMods")
 
-#define ___TOPROWS_MOD_3x10___                  \
+LAYER_MAP(                  \
   ___10_SYMBOLS___,                             \
     ___10_NUMBERS_BEAKL15___,                   \
-    ___MODS_ROW___
+    ___MODS_ROW___)
 
-#define CARTE_TOPROWS_JOHNM_MOD                 \
-  carte_de_map("   !@#$%  ^&*()",               \
+#endif
+
+#ifdef TOPROWS_JOHNM_MODS_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(TOPROWS_JOHNM_MOD, \
+                   "Toprows John 15 Mods", \
+                   "", \
+                   "Johnm numbers, punctuation, SL and OS Mods.")
+
+
+carte_de_MAP("   !@#$%  ^&*()",               \
                "   84236  71059",               \
                "  SLMods  OSMods")
 
-#define ___TOPROWS_JOHNM_MOD_3x10___            \
+LAYER_MAP(            \
   ___10_SYMBOLS___,                             \
     ___10_NUMBERS_JOHNM___,                     \
-    ___MODS_ROW___
+    ___MODS_ROW___)
 
-#define CARTE_TOPROWS_JOHNM2_MOD                \
-  carte_de_map("   !@#$%  ^&*()",               \
+#endif
+
+
+#ifdef TOPROWS_JOHNM2_MODS_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(TOPROWS_JOHNM2_MOD, \
+                   "Toprows John 15 Mods", \
+                   "", \
+                   "Johnm numbers, punctuation, SL and OS Mods.")
+
+
+carte_de_MAP("   !@#$%  ^&*()",               \
                "   65238  91047",               \
                "  SLMods  OSMods")
 
-#define ___TOPROWS_JOHNM2_MOD_3x10___           \
+LAYER_MAP(           \
   ___10_SYMBOLS___,                             \
     ___10_NUMBERS_JOHNM2___,                    \
-    ___MODS_ROW___
+    ___MODS_ROW___)
 
-#define CARTE_TOPROWS_BKL19                     \
-  carte_de_map("   !@#$%  ^&*()",               \
+#endif
+
+#ifdef TOPROWS_BEAKL19_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(TOPROWS_BEAKL19, \
+                   "Toprows Beakl 19", T\
+                   "", \
+                   "Beakl 19 numbers, punctuation, Function keys.")
+
+carte_de_MAP("   !@#$%  ^&*()",               \
                "   32104  76598",               \
-               " F1-    --    -F12")
+               "   F1-  -- -F10")
 
-#define ___TOPROWS_BKL19_3x10___                \
+LAYER_MAP(                \
   ___10_SYMBOLS___,                             \
     ___10_NUMBERS_BEAKL19___,                   \
-    ___10_FUNCS___
+    ___10_FUNCS___)
+#endif

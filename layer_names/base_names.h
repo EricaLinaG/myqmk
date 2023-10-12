@@ -49,7 +49,7 @@
       LANG_N(_COLEMAK_DH),
 #endif
 #ifdef HALMAK_LAYER_ENABLE
-      LANG_N(_COLEMAK),
+      LANG_N(_HALMAK),
 #endif
 #ifdef MINIMAK_LAYER_ENABLE
       LANG_N(_MINIMAK),

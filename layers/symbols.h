@@ -40,53 +40,98 @@
 
 // ---------------------------
 // ---------------------------
-#define CARTE_SYMB_BEAKL                        \
-  carte_de_map("  <$>   [_]   ",                \
+
+#ifdef SYMB_BEAKL_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(SYMB_BEAKL, \
+                   "Symb Beakl", \
+                   "", \
+                   "Original Beakl 15 Symbol layer, has tap hold on delimiters.")
+
+carte_de_MAP("  <$>   [_]   ",                \
                "-\\(\")# %{=}|;",               \
                "  :*+   &^~   ")
 
-#define ___SYMB_BEAKL_3x10___                                           \
+LAYER_MAP(                                           \
   CHUNK_LANG_MAP(_TRNS,   ___SB_L1___, _TRNS,    _TRNS,  ___SB_R1___, _TRNS, \
                  ___SB_L2___,                    ___SB_R2___,           \
-                 _TRNS,   ___SB_L3___, _TRNS,    _TRNS, ___SB_R3___, _TRNS)
+                 _TRNS,   ___SB_L3___, _TRNS,    _TRNS, ___SB_R3___, _TRNS))
+
+#endif
+
+#ifdef SYMB_BEAKL_EXT_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(SYMB_BEAKL_EXT_, \
+                   "Symb Beakl extended", \
+                   "", \
+                   "Beakl Symbol layer, extended for other base layers")
 
 // ---------------------------
 // A: Extended.
-#define CARTE_SYMB_BEAKLA                       \
-  carte_de_map("   `<$>'  ?[_]-",               \
+carte_de_MAP("   `<$>'  ?[_]-",               \
                "  -\\(\")#  %{:}|;",            \
                "   @=*+;  !&^~/")
 
-#define ___SYMB_BEAKLA_3x10___                                          \
+LAYER_MAP(                                          \
   CHUNK_LANG_MAP(_OCGRV, ___SB_L1___, _OCQUOT,   _QUES,  ___SB_R1___, _MINS, \
                  ___SB_L2___,                    ___SB_R2a___,          \
-                 _AT,    ___SB_L3___, _SCLN,     _EXLM, ___SB_R3___, _SLSH)
+                 _AT,    ___SB_L3___, _SCLN,     _EXLM, ___SB_R3___, _SLSH))
+
+#endif
+
+#ifdef SYMB_BEAKL_EXT_VI_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(SYMB_BEAKL_EXT_VI, \
+                   "Symb Beakl ext-vi", \
+                   "", \
+                   "Beakl Symbol layer, extended and optimised for vi.")
 
 // ---------------------------
 // B: Extended & Vi
-#define CARTE_SYMB_BEAKLB                       \
-  carte_de_map("   `<$>'  ?[_]-",               \
+carte_de_MAP("   `<$>'  ?[_]-",               \
                "  -\\(\")#  !{:}/;",            \
                "   @=*+;  %&^~|")
 
-#define ___SYMB_BEAKLB_3x10___                                          \
+LAYER_MAP(                                          \
   CHUNK_LANG_MAP(_OCGRV, ___SB_L1___,  _OCQUOT,   _QUES,  ___SB_R1___, _MINS, \
                  ___SB_L2___,                     ___SB_R2b___,         \
-                 _AT,    ___SB_L3b___, _SCLN,     _PERC, ___SB_R3___, _PIPE)
+                 _AT,    ___SB_L3b___, _SCLN,     _PERC, ___SB_R3___, _PIPE))
+
+#endif
+
+#ifdef SYMB_BEAKL_EXT_VI_OPT_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(SYMB_BEAKL_EXT_VI_OPT_, \
+                   "Symb Beakl ext-vi-opt", \
+                   "", \
+                   "Beakl Symbol layer, extended, vi/emacs optimized.")
 
 // ---------------------------
 // C: Extended & Vi, move closing braces to pinky, seldom used.
 // because of tap hold - open_openclose feature.
 // Also emacs which mostly closes them.
-#define CARTE_SYMB_BEAKLC                       \
-  carte_de_map("   `<$>'  ?[_-]",               \
+carte_de_MAP("   `<$>'  ?[_-]",               \
                "  -\\(\"#)  !{:/};",            \
                "   @=*+;  %&^~|")
 
-#define ___SYMB_BEAKLC_3x10___                                          \
+LAYER_MAP(                                          \
   CHUNK_LANG_MAP(_OCGRV, ___SB_L1___,  _OCQUOT,   _QUES,  ___SB_R1c___, _RBRC, \
                  ___SB_L2c___,                     ___SB_R2c___,        \
-                 _AT,    ___SB_L3b___, _SCLN,     _PERC, ___SB_R3___, _PIPE)
+                 _AT,    ___SB_L3b___, _SCLN,     _PERC, ___SB_R3___, _PIPE))
+
+#endif
+
+#ifdef SYMB_BEAKL_EXT_VI_OPT_RED_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(SYMB_BEAKL_EXT_VI_OPT_RED_, \
+                   "Symb Beakl ext-vi-opt-red", \
+                   "", \
+                   "Beakl Symbol layer, extended, vi/emacs, )}] on combos")
 
 // Next evolution.
 // Use combos to get closing )]} instead of on the map.
@@ -98,26 +143,45 @@
 // and ' gets to be in the center, while $ gets a corner. pinkies are almost free.
 // maybe ?_! can switch around some.  Room to mess around with the corners.
 
-#define CARTE_SYMB_D                            \
-  carte_de_map("   `<'>$  [?_! ",               \
+// Symbol extended vi/emacs optimised reduced.
+carte_de_MAP("   `<'>$  [?_! ",               \
                "   \\(\"#%  {-:/|",             \
                "    =*+;  @&^~ ")
 
-#define ___SYMB_D_3x10___                                   \
+LAYER_MAP(                                   \
   CHUNK_LANG_MAP(_OCGRV, ___SB_L1d___,  _DLR,   ___SB_R1d___, _NO,   \
                  ___SB_L2d___,                  ___SB_R2d___,           \
-                 _NO,    ___SB_L3b___, _SCLN,     _AT, ___SB_R3___, _NO)
+                 _NO,    ___SB_L3b___, _SCLN,     _AT, ___SB_R3___, _NO))
+
+#endif
+
+#ifdef SYMB_MIRYOKU_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(SYMB_MIRYOKU,\
+                   "Symb Miryoku", \
+                   "", \
+                   "Miryoku symbol layer")
 
 // wants ( and ) on the left thumb.
-#define CARTE_SYMB_MIRYOKU                                  \
-  carte_de_map("  {&.(} ",                                  \
+carte_de_MAP("  {&.(} ",                                  \
                "  :$%^+ ",                                  \
                "  ~!@#| ")
 
-#define ___SYMB_MIRYOKU_3x10___                         \
+LAYER_MAP(                         \
   CHUNK_LANG_MAP(_OCCBR,   _AMPR, _DOT,  _OCPRN,   _RCBR, ____5_,     \
                  _COLN,    _DLR,  _PERC, _CIRC_ND, _PLUS, ____5_,     \
-                 _TILD_ND, _EXLM, _AT,   _HASH,    _PIPE, ____5_)
+                 _TILD_ND, _EXLM, _AT,   _HASH,    _PIPE, ____5_))
+
+#endif
+
+#ifdef SYMB_BEAKL_WI_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(SYMB_BEAKL_WI, \
+                   "Symb Beakl WI", \
+                   "", \
+                   "Beakl WI symbol layer")
 
 // ---------------------------
 // WI: the Beakl Wi definition.
@@ -129,15 +193,24 @@
 #define ___SYMB_BKL_WI_R2___ _QUES, _OCPRN, _DLR ,    _RPRN, ___
 #define ___SYMB_BKL_WI_R3___ _PIPE, _OCCBR, _HASH,    _RCBR, ___
 
-#define CARTE_SYMB_BEAKLWI                      \
-  carte_de_map(" .*&+  *[^] ",                  \
+carte_de_MAP(" .*&+  *[^] ",                  \
                " ?!/|  ?($) ",                  \
                " <>%@  |{#} ")
 
-#define ___SYMB_BEAKL_WI_3x10___                                \
+LAYER_MAP(                                \
   CHUNK_LANG_MAP(___SYMB_BKL_WI_L1___, ___SYMB_BKL_WI_R1___,    \
                  ___SYMB_BKL_WI_L2___, ___SYMB_BKL_WI_R2___,    \
-                 ___SYMB_BKL_WI_L3___, ___SYMB_BKL_WI_R3___)
+                 ___SYMB_BKL_WI_L3___, ___SYMB_BKL_WI_R3___))
+
+#endif
+
+#ifdef SYMB_NEO_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(SYMB_NEO, \
+                   "Symb Neo", \
+                   "", \
+                   "Neo symbol layer")
 
 // ---------------------------
 // Neo symbol layer
@@ -149,12 +222,13 @@
 #define ___SYMB_NEO_R2___ _QUES, _OCPRN, _RPRN , _QUOT, _COLN
 #define ___SYMB_NEO_R3___ _PLUS, _PERC,  _BSLS,  _AT,   ___
 
-#define CARTE_SYMB_NEO                          \
-  carte_de_map("\"_[]^  !<>=&",                 \
+carte_de_MAP("\"_[]^  !<>=&",                 \
                "/-{}*  ?()':",                  \
                "#$|~`  +%\@")
 
-#define ___SYMB_NEO_3x10___                                     \
+LAYER_MAP(                                     \
   CHUNK_LANG_MAP(___SYMB_NEO_L1___, ___SYMB_NEO_R1___,          \
                  ___SYMB_NEO_L2___, ___SYMB_NEO_R2___,          \
-                 ___SYMB_NEO_L3___, ___SYMB_NEO_R3___)
+                 ___SYMB_NEO_L3___, ___SYMB_NEO_R3___))
+
+#endif

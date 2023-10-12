@@ -1,6 +1,6 @@
 #pragma once
 /*
-  Copyright 2018-2023 Eric Gebhart <e.a.gebhart@gmail.com>
+  Copyright 2018-2023 EricaLina, Eric Gebhart <e.a.gebhart@gmail.com>
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -20,18 +20,31 @@
 #include "lang_map.h"
 #include "oled_stuff.h"
 
-// an empty template.
+// An empty keymap layer template.
 
-/* #define CARTE_EMPTY                \ */
-/*   carte_de_map("  ",               \ */
-/*                "  ",               \ */
-/*                "  ") */
+#ifdef _EMPTY_LAYER_ENABLE
 
-/*                      */
-/* #define ___EMPTY___                             \ */
-/*   LANG_MAP(_, _, _, _, _,   _, _, _, _, _,      \ */
-/*            _, _, _, _, _,   _, _, _, _, _,      \ */
-/*            _, _, _, _, _,   _, _, _, _, _)        */
+// Layer name,
+// text name,
+// url,
+// note,
+// text map,
+// definition,
+LAYER_NAME(EMPTY, "Empty",           \
+                 https://empty,     \
+                 "this is a note")
+
+carte_de_MAP("  ",               \
+             "  ",               \
+             "  ")
+
+LAYER_MAP(
+   LANG_MAP(_, _, _, _, _,   _, _, _, _, _,      \
+            _, _, _, _, _,   _, _, _, _, _,      \
+            _, _, _, _, _,   _, _, _, _, _))
+
+
+#endif
 
 // dvorak, capewell-dvorak, ahei, and boo.
 #include "dvorak.h"

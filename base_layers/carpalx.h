@@ -1,6 +1,6 @@
 #pragma once
 /*
-  Copyright 2018-2022 Eric Gebhart <e.a.gebhart@gmail.com>
+  Copyright 2018-2023 EricaLina, Eric Gebhart <e.a.gebhart@gmail.com>
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -16,32 +16,56 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#define CARTE_CARPALX_QFMLWY                    \
-  carte_de_map("   qfmlw  yuobj",               \
-               "   dstnr  iaeh;",               \
-               "   zvgcx  pk,./")
+#ifdef _CARPALX_QFMLWY_LAYER_ENABLE
 
-#define ___CARPALX_QFMLWY___                                            \
-  LANG_MAP(_Q, _F, _M, _L, _W,   _Y, _U, _O,      _B,     _J,           \
-           _D, _S, _T, _N, _R,   _I, _A, _E,      _H,     TL_SCLN,      \
-           _Z, _V, _G, _C, _X,   _P, _K, TL_COMM, TL_DOT, TL_SLSH)
+LAYER_NAME(CARPALX_QFMLWY, \
+                   "Carpalx QFMLWY", \
+                   "", \
+                   "Carpalx")
 
-#define CARTE_CARPALX_QFMLWB                    \
-  carte_de_map("   qgmlw  byuv;",               \
-               "   dstnr  iaeoh",               \
-               "   zxcfj  kp,./")
+carte_de_MAP("   qfmlw  yuobj",               \
+             "   dstnr  iaeh;",               \
+             "   zvgcx  pk,./")
 
-#define ___CARPALX_QGMLWB___                                            \
-  LANG_MAP(_Q, _G, _M, _L, _W,   _B, _Y, _U,      _V,     TL_SCLN,      \
-           _D, _S, _T, _N, _R,   _I, _A, _E,      _O,     _H,           \
-           _Z, _X, _C, _F, _J,   _K, _P, TL_COMM, TL_DOT, TL_SLSH)
+LAYER_MAP(
+  LANG_MAP(_Q, _F, _M, _L, _W,   _Y, _U, _O,    _B,   _J,           \
+           _D, _S, _T, _N, _R,   _I, _A, _E,    _H,   _SCLN,      \
+           _Z, _V, _G, _C, _X,   _P, _K, _COMM, _DOT, _SLSH))
 
-#define CARTE_CARPALX_QGMLWY                    \
-  carte_de_map("   qgmlw  yfub;",               \
-               "   dstnr  iaeoh",               \
-               "   zxcvj  kp,./")
+#endif
 
-#define ___CARPALX_QGMLWY___                                            \
-  LANG_MAP(_Q, _G, _M, _L, _W,   _Y, _F, _U,      _B,     TL_SCLN,      \
-           _D, _S, _T, _N, _R,   _I, _A, _E,      _O,     _H,           \
-           _Z, _X, _C, _V, _J,   _K, _P, TL_COMM, TL_DOT, TL_SLSH)
+#ifdef _CARPALX_QFMLWB_LAYER_ENABLE
+
+LAYER_NAME(CARPALX_QFMLWB,  \
+                   "Carpalx QFMLWB",  \
+                   "", \
+                   "Carpalx")
+
+carte_de_MAP("   qgmlw  byuv;",               \
+             "   dstnr  iaeoh",               \
+             "   zxcfj  kp,./")
+
+LAYER_MAP(
+  LANG_MAP(_Q, _G, _M, _L, _W,   _B, _Y, _U,    _V,   _SCLN,      \
+           _D, _S, _T, _N, _R,   _I, _A, _E,    _O,   _H,           \
+           _Z, _X, _C, _F, _J,   _K, _P, _COMM, _DOT, _SLSH))
+
+#endif
+
+#ifdef _CARPALX_QGMLWY_LAYER_ENABLE
+
+LAYER_NAME(CARPALX_QGMLWY, \
+                   "Carpalx QGMLWY", \
+                   "", \
+                   "Carpalx")
+
+carte_de_MAP("   qgmlw  yfub;",               \
+             "   dstnr  iaeoh",               \
+             "   zxcvj  kp,./")
+
+LAYER_MAP(
+  LANG_MAP(_Q, _G, _M, _L, _W,   _Y, _F, _U,    _B,   _SCLN,      \
+           _D, _S, _T, _N, _R,   _I, _A, _E,    _O,   _H,           \
+           _Z, _X, _C, _V, _J,   _K, _P, _COMM, _DOT, _SLSH))
+
+#endif

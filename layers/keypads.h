@@ -85,124 +85,218 @@
 #define ___5x4_FUNCPAD_2___   _TRNS, _F4,   _F5,   _F6,  _TRNS
 #define ___5x4_FUNCPAD_3___   _TRNS, _F1,   _F2,   _F3,  _TRNS
 
+#ifdef KP_BEAKL_WI_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(KP_BEAKL_WI, \
+                   "KP_Beakl WI", \
+                   "", \
+                   "")
+
 // beakl wi is a hexpad numpad.
 /* Beakle Wi, Hexpad and keypad - needs a zero somewhere.*/
-#define CARTE_KP_BKL_WI                         \
-  carte_de_map( "  ABC  /459* ",                \
+carte_de_MAP( "  ABC  /459* ",                \
                 "  DEF  .123- ",                \
                 "  {}|  ,867+ ")
 
-#define ___KP_BKL_WI_3x10___                                    \
+LAYER_MAP( \
   CHUNK_LANG_MAP(___KP_BKL_WI_L1___, ___KP_BKL_WI_R1___,        \
                  ___KP_BKL_WI_L2___, ___KP_BKL_WI_R2___,        \
-                 ___KP_BKL_WI_L3___, ___KP_BKL_WI_R3___)
+                 ___KP_BKL_WI_L3___, ___KP_BKL_WI_R3___))
+
+#endif
+
+#ifdef KP_BEAKL_FUNC_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(KP_BEAKL_FUNC, \
+                   "Beakl Keypad", \
+                   "", \
+                   "")
 
 // BEAKL 15 and a f1-f12 funcpad
-#define CARTE_KP_BKL_FUNC                       \
-  carte_de_map("    523:  F9-12",               \
+carte_de_MAP("    523:  F9-12",               \
                "  -7.104  F5-8",                \
                "   /798,  F1-4")
 
-#define ___KP_BKL_FUNC_3x10___                                          \
+LAYER_MAP( \
   CHUNK_LANG_MAP(___KEYPAD_BEAKL_L2___, _TRNS, ___4_FUNCPAD_1___,       \
                  ___KEYPAD_BEAKL_L3___, _TRNS, ___4_FUNCPAD_2___,       \
-                 ___KEYPAD_BEAKL_L4___, _TRNS, ___4_FUNCPAD_3___)
+                 ___KEYPAD_BEAKL_L4___, _TRNS, ___4_FUNCPAD_3___))
+
+
+// 4 rows, BEAKL 15 and a f1-f12 funcpad
+LAYER_MAP( \
+  CHUNK_LANG_ROW(___KEYPAD_BEAKL_L1___, ___KEYPAD_BEAKL_R1___), \
+  CHUNK_LANG_MAP(___KP_BKL_FUNC___))
+
+#endif
+
+#ifdef KP_BEAKL_MODS_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(KP_BEAKL_MODS, \
+                   "Beakl Keypad", \
+                   "", \
+                   "")
 
 // BEAKL 15 and mods.
-#define CARTE_KP_BKL_MODS                          \
-  carte_de_map("    523:  SL Mods",                \
+carte_de_MAP("    523:  SL Mods",                \
                "  -7.104  OS Mods",                \
                "   /798,   Enter")
 
 
-#define ___KP_BKL_MODS_3x10___                                          \
+LAYER_MAP( \
   CHUNK_LANG_MAP(___KEYPAD_BEAKL_L2___, _TRNS, ___SML_MODS_R___,        \
                  ___KEYPAD_BEAKL_L3___, ___OS_MODS_R___,                \
-                 ___KEYPAD_BEAKL_L4___, _TRNS, _ENT, _ENT, _ENT, _TRNS)
+                 ___KEYPAD_BEAKL_L4___, _TRNS, _ENT, _ENT, _ENT, _TRNS))
 
-// 4 rows, BEAKL 15 and a f1-f12 funcpad
-#define ___KP_BKL_FUNC_4x10___                                  \
-  CHUNK_LANG_ROW(___KEYPAD_BEAKL_L1___, ___KEYPAD_BEAKL_R1___), \
-    CHUNK_LANG_MAP(___KP_BKL_FUNC_3x10___)
+#endif
+
+#ifdef FP_KP4_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(FP_KP_5x4, \
+                   "Funcpad Keypad", \
+                   "", \
+                   "4 rows, funcpad on left.")
 
 // 4 rows, funcpad, regular keypad on right.
-#define ___FP_KP_4x10___                                        \
+LAYER_MAP( \
   CHUNK_LANG_ROW(___5x4_FUNCPAD_T___,  ___5KEYPAD_1___),        \
     CHUNK_LANG_MAP(___5x4_FUNCPAD_1___,  ___5KEYPAD_2___,       \
                    ___5x4_FUNCPAD_2___,  ___5KEYPAD_3___,       \
-                   ___5x4_FUNCPAD_3___,  ___5KEYPAD_4___)
+                   ___5x4_FUNCPAD_3___,  ___5KEYPAD_4___))
 
-#define CARTE_FP_KP                             \
-  carte_de_map("  F9-12   789+",                \
+carte_de_MAP("  F9-12   789+",                \
                "  F5-8   .456*",                \
                "  F1-4   0123-")
 
+#endif
+
+#ifdef FP_KP_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(FP_KP, \
+                   "Funcpad Keypad", \
+                   "", \
+                   "Funcpad on left. Keypad on right")
+
 // funcpad, regular keypad on right.
-#define ___FP_KP_3x10___                                        \
+LAYER_MAP( \
   CHUNK_LANG_MAP(___4_FUNCPAD_1___, ___, ___5KEYPAD_1___,       \
                  ___4_FUNCPAD_2___, ___,  ___5KEYPAD_2___,      \
-                 ___4_FUNCPAD_3___, ___,  ___5KEYPAD_3___)
+                 ___4_FUNCPAD_3___, ___,  ___5KEYPAD_3___))
 
-#define CARTE_KP_FP                             \
-  carte_de_map("   789+  F9-12",                \
-               "  .456*  F5-8",                 \
-               "  0123-  F1-4")
+carte_de_MAP("  F9-12   789+",                \
+               "  F5-8   .456*",                \
+               "  F1-4   0123-")
 
+#endif
+
+#ifdef KP_FP_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(KP_FP, \
+                   "Funcpad Keypad", \
+                   "", \
+                   "Keypad on left, funcpad on right.")
 // regular keypad on left.
-#define ___KP_FP_3x10___                                        \
+LAYER_MAP( \
   CHUNK_LANG_MAP(___5KEYPAD_1___,  ___, ___4_FUNCPAD_1___,      \
                  ___5KEYPAD_2___,  ___, ___4_FUNCPAD_2___,      \
-                 ___5KEYPAD_3___,  ___, ___4_FUNCPAD_3___)
+                 ___5KEYPAD_3___,  ___, ___4_FUNCPAD_3___))
 
-#define CARTE_MODS_KP                           \
-  carte_de_map("  SMods   789+",                \
+carte_de_MAP("  SMods   789+",                \
                "  OSMods .456*",                \
                "  F1-4   0123-")
 
+#ifdef MODS_KP_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(MODS_KP, \
+                   "Mods Keypad", \
+                   "", \
+                   "Mods on left keypad on right")
+
 // funcpad, regular keypad on right.
-#define ___MODS_KP_3x10___                                    \
+LAYER_MAP( \
   CHUNK_LANG_MAP(___SML_MODS_L___, ___, ___5KEYPAD_1___,        \
                  ___OS_MODS_L___,       ___5KEYPAD_2___,     \
-                 ___5___,               ___5KEYPAD_3___)
+                 ___5___,               ___5KEYPAD_3___))
 
-#define CARTE_KP_MODS                           \
-  carte_de_map("   789+  SMods",                \
-               "  .456*  OSMods",                 \
-               "  0123-  ")
+carte_de_MAP("   SMods  789+ ",                \
+               "  OSMods .456* ",                 \
+               "         0123-  ")
+
+#endif
+
+#ifdef KP_MODS_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(KP_MODS, \
+                   "Mods Keypad", \
+                   "", \
+                   "Keypad on left, Mods on right")
 
 // regular keypad on left.
-#define ___KP_MODS_3x10___                                      \
+LAYER_MAP( \
   CHUNK_LANG_MAP(___5KEYPAD_1___,  ___, ___SML_MODS_R___,       \
                  ___5KEYPAD_2___,  ___OS_MODS_L___,        \
-                 ___5KEYPAD_3___,  ___, ___4___)
+                 ___5KEYPAD_3___,  ___, ___4___))
+#endif
 
-#define CARTE_FUN                           \
-  carte_de_map("  F9-F12  SMods",                \
+#ifdef FP_MODS_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(FP_MODS, \
+                   "Func pad, Mods", \
+                   "", \
+                   "Keypad on left, Mods on right")
+
+carte_de_MAP("  F9-F12  SMods",                \
                "  F5-F8   OSMods",               \
                "  F1-F4   ")
 
-#define ___FUN_3x10___                                                  \
+LAYER_MAP( \
   CHUNK_LANG_MAP(___4_FUNCPAD_1___, ___,  ___, ___SML_MODS_R___,        \
                  ___4_FUNCPAD_2___, ___,  ___OS_MODS_R___,              \
-                 ___4_FUNCPAD_3___, ___,  ___5___)
+                 ___4_FUNCPAD_3___, ___,  ___5___))
 
-#define CARTE_FUN_MIRYOKU                       \
-  carte_de_map("F12 F7-F9 prt  SMods",          \
+#ifdef FP_MIRYOKU_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(FP_MIRYOKU, \
+                   "Func pad, Mods", \
+                   "", \
+                   "Funcpad on left, Mods on right")
+
+carte_de_MAP("F12 F7-F9 prt  SMods",          \
                "F11 F4-F6 scr  OSMods",         \
                "F10 F1-F3 pse  ")
 
-#define ___FP_MIRYOKU_3x10___                           \
+LAYER_MAP( \
   ___FUNCPAD_miryoku_1___,  ___, ___SML_MODS_R___,     \
     ___FUNCPAD_miryoku_2___,  ___OS_MODS_R___,         \
-    ___FUNCPAD_miryoku_3___,  ___5___
+    ___FUNCPAD_miryoku_3___,  ___5___))
+
+#endif
+
+#ifdef KP_MIRYOKU_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(KP_MIRYOKU, \
+                   "Miryoku Keypad", \
+                   "", \
+                   "Keypad on left. Wants . and 0 on left thumb.")
 
 // wants . and 0 on left thumb.
-#define CARTE_KP_MIRYOKU      \
-  carte_de_map(" [789]",      \
+carte_de_MAP(" [789]",      \
                " ;456=",      \
                " `123\\")
 
-#define ___KP_MIRYOKU_3x10___                                     \
+LAYER_MAP( \
   CHUNK_LANG_MAP(___KEYPAD_miryoku_1___,                          \
                  ___KEYPAD_miryoku_2___,                             \
-                 ___KEYPAD_miryoku_3___)
+                 ___KEYPAD_miryoku_3___))
+#endif

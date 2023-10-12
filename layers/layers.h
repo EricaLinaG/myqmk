@@ -1,6 +1,6 @@
 #pragma once
 /*
-  Copyright 2018 Eric Gebhart <e.a.gebhart@gmail.com>
+  Copyright 2018-2023 EricaLina, Eric Gebhart <e.a.gebhart@gmail.com>
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,8 +19,18 @@
 
 #define CHUNK_LANG_MAP(...) LANG_MAP(__VA_ARGS__)
 #define CHUNK_LANG_ROW(...) LANG_ROW(__VA_ARGS__)
+// Layer name, definition, text name, text map.
+#define BLANK(...)
+LAYER_NAME(...) BLANK(__VA_ARGS__)
+//#define _LAYER_NAME(layer, definition, text_name, map, url, note) \
+//       _%%layer, text_name, note
+// for base_names.h, etc.
+//#define _LAYER_NAME(layer, definition, text_name, map, url, note) \
+//       LANG_N(_%%layer),
 
-// moved smart/one-shot mod row to perimeter/toprows.
+/* B_LAYER(LANG_N(_MTGAP), ___10_NUMBERS___, ___MTGAP___), */
+/* B_LAYERt6(LANG_N(_BEPO), ___12_SYMBOLS_BEPO___, ___BEPO_3x12___), */
+/* T_LAYER(_NAVm, ___NAVm_3x10___), */
 
 #include "accents.h"
 #include "toprows.h"
@@ -41,16 +51,25 @@
 #define ___MUTE_PRV_PLAY_NXT_STOP___  KC_MUTE,  KC_MPRV, KC_MPLY, KC_MNXT, KC_MSTP
 #define ___MUTE_PLAY_STOP___  KC_MUTE,  KC_MPLY,  KC_MSTP
 
-#define CARTE_MEDIA                      \
-  carte_de_map(" ",                      \
+#ifdef MEDIA_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(MEDIA, \
+                   "MEDIA", \
+                   "", \
+                   "A Layer for Controlling media")
+
+carte_de_MAP(" ",                      \
                "  < vdn vup >",          \
                "  stp play mute")
 
 // miryoku, to be used with stop play mute on thumbs. - MEDIA thumbs.
-#define ___MEDIA_3x10___                        \
+LAYER_MAP(                        \
   ___5___, ___5___,                             \
     ___5___, ___, ___PRV_VDN_VUP_NXT___,        \
-    ___5___, ___5___
+    ___5___, ___5___)
+
+#endif
 
 /********************************************************************************/
 /* RGB  - Control those lights.                                                 */
@@ -76,7 +95,21 @@
 /********************************************************************************/
 /* The RGB LAYER Chunk                                                          */
 /********************************************************************************/
-#define ___RGB_3x10___ ___10_RGB_1___, ___10_RGB_2___, ___10_RGB_3___
+#ifdef RGB_LAYER_ENABLE
+
+// Layer name, definition, text name, text map, url, note.
+LAYER_NAME(RGB, \
+                   "RGB", \
+                   "", \
+                   "A Layer for adjusting lights.")
+
+carte_de_MAP(" ",          \
+               " ",          \
+               " ")
+
+LAYER_MAP( ___10_RGB_1___, ___10_RGB_2___, ___10_RGB_3___)
+
+#endif
 
 /********************************************************************************/
 /* ADJUST - Miscellaneous Melange.                                              */
@@ -92,9 +125,23 @@
 /********************************************************************************/
 /* The Adjust LAYER Chunks                                                      */
 /********************************************************************************/
-#define ___ADJUST_3x10___  ___ADJUST_L1___, ___ADJUST_R1___,    \
+#ifdef ADJUST_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(ADJUST, \
+                   "Adjust", \
+                   "", \
+                   "A Layer for Adjusting things.")
+
+carte_de_MAP(" ",          \
+               " ",          \
+               " ")
+
+LAYER_MAP(  ___ADJUST_L1___, ___ADJUST_R1___,    \
     ___ADJUST_L2___, ___ADJUST_R2___,                           \
-    ___ADJUST_L3___, ___ADJUST_R3___
+    ___ADJUST_L3___, ___ADJUST_R3___)
+
+#endif
 
 /********************************************************************************/
 /* LAYERS - Define a base layer, switch to any layer. Get around. Experiment.   */
@@ -125,13 +172,23 @@
 #define ___5_LAYERS_T_CTL___ ___, MO_RGB, ___, ___, MO_ADJUST
 
 
-#define CARTE_LAYERS                            \
-  carte_de_map("          |Nv S K TR",          \
+#ifdef LAYERS_LAYER_ENABLE
+
+// Layer name, definition, text name, text map.
+LAYER_NAME(LAYERS, \
+                   "Layers", \
+                   "", \
+                   "A Layer for accessing layers.")
+
+
+carte_de_MAP("          |Nv S K TR",          \
                "  EE Bs Ln|Nv S K TR",          \
                " ")
 
 /// A Layers Layer
-#define ___LAYERS_3x10___                       \
-  ___5___,            ___5_LAYERS_T_BP___,      \
+LAYER_MAP(                       \
+    ___5___,            ___5_LAYERS_T_BP___,      \
     ___BASE_LAYERS___,  ___5_LAYERS_T___,       \
-    ___5___,            ___5_LAYERS_T_CTL___
+    ___5___,            ___5_LAYERS_T_CTL___)
+
+#endif
