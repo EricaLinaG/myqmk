@@ -36,11 +36,13 @@
 // #define BASE_NUMBER_ROW  // turn on 4 row base templates if youve got one.
 
 // OLED STUFF.
-// #define OLED_CUSTOM_ENABLE // custom oled here.
-//#define OLED_LOGO_ENABLE // turn on/off the logo.
+#define OLED_CUSTOM_ENABLE // custom oled here.
 
-#define KEYLOGGER_ENABLE // 1500 bytes, track and print keypress info to oled.
+//#define OLED_LOGO_ENABLE // turn on/off the logo.
 //#define SPLIT_LAYER_STATE_ENABLE  // to sync state between sides.
+
+#define OLED_DISPLAY_128X64
+#define KEYLOGGER_ENABLE // 1500 bytes, track and print keypress info to oled.
 
 // Sets good default for the speed of the mouse.
 #undef MOUSEKEY_INTERVAL
@@ -66,8 +68,6 @@
 
 #define TAPPING_TOGGLE  2
 #define TAPPING_TERM    200
-// Alans tapping term.
-// #define TAPPING_TERM 170 // Mod TAP VS HOLD timing in milliseconds
 
 #define TAP_HOLD_TERM    200
 #define COMBO_MUST_HOLD_MODS
@@ -75,7 +75,7 @@
 #define TAP_CODE_DELAY 5  // for send string with delay
 #define ADAPTIVE_TERM (TAPPING_TERM/2) // rolling threshold
 
-#define MODS_ARE TRNS
+#define MODS_ARE HRM_SCAG
 #define DEFAULT_MODS MODS_ARE
 
 // Choose a thumb cluster.
@@ -87,8 +87,8 @@
 
 // HD, HDA, HD_SIMPLE, TH_LTR, HD_DASH, KINESIS, KINESIS_LTR,
 // MIRYOKU_TR_LTR, MIRYOKU_LTR, ...
-#define THUMBS_ARE KINESIS
-#define DEFAULT_THUMBS KINESIS
+#define THUMBS_ARE FKYRIA
+#define DEFAULT_THUMBS FKYRIA
 
 // for the base layers which need a thumb cluster which takes a letter.
 #define HANDS_DOWN_LTR_THUMBS_ARE KINESIS_LTR

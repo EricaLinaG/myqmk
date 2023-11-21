@@ -34,10 +34,11 @@
 #define CATR3(a, ...) CONCATENATER3(a, __VA_ARGS__)
 
 // mod layer name construction. add new layer extensions here.
-// TRNS, ALT, HRM_GACS, HRM_SCAG, HRM_GASC, MIRYOKU_HRM_GASC
+// TRNS, ALT, HRM_GACS, HRM_SCAG, HRM_SACGHRM_GASC, MIRYOKU_HRM_GASC
 #define MOD_EXT CATR3(MODS_ARE, _MOD)
 #define TRNS_MOD _trns
 #define HRM_SCAG_MOD _hrm_scag
+#define HRM_SACG_MOD _hrm_sacg
 #define HRM_GACS_MOD _hrm_gacs
 #define HRM_GASC_MOD _hrm_gasc
 #define MIRYOKU_HRM_GACS_MOD _miryoku_hrm_gacs

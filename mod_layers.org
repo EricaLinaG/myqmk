@@ -332,10 +332,11 @@ These are the actual mod layer suffix names.
 Define your mod layer's Extension here by adding it to the list of defines.
 #+begin_src C :tangle mod_layers/mod_layer.h
 // mod layer name construction. add new layer extensions here.
-// TRNS, ALT, HRM_GACS, HRM_SCAG, HRM_GASC, MIRYOKU_HRM_GASC
+// TRNS, ALT, HRM_GACS, HRM_SCAG, HRM_SACGHRM_GASC, MIRYOKU_HRM_GASC
 #define MOD_EXT CATR3(MODS_ARE, _MOD)
 #define TRNS_MOD _trns
 #define HRM_SCAG_MOD _hrm_scag
+#define HRM_SACG_MOD _hrm_sacg
 #define HRM_GACS_MOD _hrm_gacs
 #define HRM_GASC_MOD _hrm_gasc
 #define MIRYOKU_HRM_GACS_MOD _miryoku_hrm_gacs
@@ -666,7 +667,7 @@ Here is an example from the Transparent mod layer, Row 0, Left side.
 #define ROW3R_5_6_alt(K01, K02, K03, K04, K05) \
   ROW3R_6_alt(K01, K02, K03, K04, K05, RIGHT_3)
   #+end_src
-*** SCAG
+*** SACG
 **** Row 0 - Number Row
 ***** Left
 #+begin_src C :tangle mod_layers/hrm_sacg.h
@@ -804,6 +805,146 @@ Here is an example from the Transparent mod layer, Row 0, Left side.
 // 5 into 6, derivitive of the first two.
 #define ROW3R_5_6_hrm_sacg(K01, K02, K03, K04, K05) \
   ROW3R_6_hrm_sacg(K01, K02, K03, K04, K05, RIGHT_3)
+  #+end_src
+*** SCAG
+**** Row 0 - Number Row
+***** Left
+#+begin_src C :tangle mod_layers/hrm_scag.h
+// LEFT.
+#define ROW0L_5_hrm_scag(K01, K02, K03, K04, K05)       \
+  K01, K02, K03, K04, K05
+
+// Take and put an extra column in front.
+// Mod K01 how you want it.
+#define ROW0L_6_hrm_scag(K01, K02, K03, K04, K05, K06) \
+  K01    \
+  , ROW0L_5_hrm_scag(K02, K03, K04, K05, K06)
+
+// 5 into 6, derivitive of the first two.
+#define ROW0L_5_6_hrm_scag(K01, K02, K03, K04, K05) \
+  ROW0L_6_hrm_scag(LEFT_0, K01, K02, K03, K04, K05)
+#+end_src
+***** Right
+#+begin_src C :tangle mod_layers/hrm_scag.h
+// RIGHT.
+#define ROW0R_5_hrm_scag(K01, K02, K03, K04, K05)       \
+  K01, K02, K03, K04, K05
+
+// Take and put an extra column in front.
+// Mod K01 how you want it.
+#define ROW0R_6_hrm_scag(K01, K02, K03, K04, K05, K06) \
+  ROW0R_5_hrm_scag(K01, K02, K03, K04, K05),\
+  K06
+
+// 5 into 6, derivitive of the first two.
+#define ROW0R_5_6_hrm_scag(K01, K02, K03, K04, K05) \
+  ROW0R_6_hrm_scag(K01, K02, K03, K04, K05, RIGHT_0)
+#+end_src
+**** Row 1
+***** Left
+#+begin_src C :tangle mod_layers/hrm_scag.h
+// ROW1
+// LEFT.
+#define ROW1L_5_hrm_scag(K01, K02, K03, K04, K05)       \
+  K01, K02, K03, LT(_NAV, K04), K05
+
+// Take and put an extra column in front.
+// Mod K01 how you want it.
+#define ROW1L_6_hrm_scag(K01, K02, K03, K04, K05, K06)  \
+  K01    \
+  , ROW1L_5_hrm_scag(K02, K03, K04, K05, K06)
+
+// 5 into 6, derivitive of the first two.
+#define ROW1L_5_6_hrm_scag(K01, K02, K03, K04, K05) \
+  ROW1L_6_hrm_scag(LEFT_1, K01, K02, K03, K04, K05)
+
+#+end_src
+***** Right
+#+begin_src C :tangle mod_layers/hrm_scag.h
+// RIGHT.
+#define ROW1R_5_hrm_scag(K01, K02, K03, K04, K05)                       \
+  K01, K02, K03, K04, LT(_LAYERS, K05)                                  \
+
+// Take and put an extra column in front.
+// Mod K06 how you want it.
+#define ROW1R_6_hrm_scag(K01, K02, K03, K04, K05, K06) \
+  ROW1R_5_hrm_scag(K01, K02, K03, K04, K05),\
+  K06
+
+// 5 into 6, derivitive of the first two.
+#define ROW1R_5_6_hrm_scag(K01, K02, K03, K04, K05) \
+  ROW1R_6_hrm_scag(K01, K02, K03, K04, K05, RIGHT_1)
+
+
+#+end_src
+**** Row 2 - Home Row
+
+***** Left
+#+begin_src C :tangle mod_layers/hrm_scag.h
+// LEFT.
+#define ROW2L_5_hrm_scag(K01, K02, K03, K04, K05)                       \
+  MT(MOD_LSFT, K01), MT(MOD_LCTL, K02), MT(MOD_LALT, K03), MT(MOD_LGUI, K04), K05
+
+// Take and put an extra column in front.
+// Mod K01 how you want it.
+#define ROW2L_6_hrm_sga(K01, K02, K03, K04, K05, K06)   \
+   K01    \
+   , ROW2L_5_hrm_scag(K02, K03, K04, K05, K06)
+
+// 5 into 6, derivitive of the first two.
+#define ROW2L_5_6_hrm_scag(K01, K02, K03, K04, K05) \
+  ROW2L_6_hrm_scag(LEFT_2, K01, K02, K03, K04, K05)
+
+#+end_src
+***** Right
+#+begin_src C :tangle mod_layers/hrm_scag.h
+// RIGHT.
+#define ROW2R_5_hrm_scag(K01, K02, K03, K04, K05)                       \
+  K01, MT(MOD_RGUI, K02),  MT(MOD_RALT, K03), MT(MOD_RCTL, K04), MT(MOD_RSFT, K05)
+
+// Take and put an extra column in front.
+// Mod K06 how you want it.
+#define ROW2R_6_hrm_scag(K01, K02, K03, K04, K05, K06) \
+  ROW2R_5_hrm_scag(K01, K02, K03, K04, K05),\
+  K06
+
+// 5 into 6, derivitive of the first two.
+#define ROW2R_5_6_hrm_scag(K01, K02, K03, K04, K05) \
+  ROW2R_6_hrm_scag(K01, K02, K03, K04, K05, RIGHT_2)
+#+end_src
+**** Row 3
+***** Left
+#+begin_src C :tangle mod_layers/hrm_scag.h
+// ROW 3
+// LEFT.
+#define ROW3L_5_hrm_scag(K01, K02, K03, K04, K05)       \
+  K01, K02, K03, K04, K05
+
+// Take and put an extra column in front.
+// Mod K01 how you want it.
+#define ROW3L_6_hrm_scag(K01, K02, K03, K04, K05, K06)  \
+  K01    \
+  ,  ROW3L_5_hrm_scag(K02, K03, K04, K05, K06)
+
+// 5 into 6, derivitive of the first two.
+#define ROW3L_5_6_hrm_scag(K01, K02, K03, K04, K05) \
+  ROW3L_6_hrm_scag(LEFT_3,  K01, K02, K03, K04, K05)
+
+#+end_src
+***** Right
+#+begin_src C :tangle mod_layers/hrm_scag.h
+// RIGHT.
+#define ROW3R_5_hrm_scag(K01, K02, K03, K04, K05)       \
+  K01, LT(_NAV, K02), K03, LT(LANG_N(_SYMB), K04), K05
+
+// Take and put an extra column in front.
+#define ROW3R_6_hrm_scag(K01, K02, K03, K04, K05, K06) \
+  ROW3R_5_hrm_scag(K01, K02, K03, K04, K05),\
+  K06
+
+// 5 into 6, derivitive of the first two.
+#define ROW3R_5_6_hrm_scag(K01, K02, K03, K04, K05) \
+  ROW3R_6_hrm_scag(K01, K02, K03, K04, K05, RIGHT_3)
   #+end_src
 *** GACS
 **** Row 0 - Number Row
